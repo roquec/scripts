@@ -1,6 +1,6 @@
 #Oh My Posh config
 oh-my-posh init pwsh | Invoke-Expression
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "C:\github\scripts\oh-my-posh\theme-roquec.json" | Invoke-Expression
 
 #Terminal Icons config
 Import-Module -Name Terminal-Icons
