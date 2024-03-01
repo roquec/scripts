@@ -4,9 +4,12 @@
         "time-foreground": "#a9a9a9",
         "session-foreground": "#E36464",
         "path-foreground": "#56B6C2",
-        "git-foreground": "#DDB15F",
-        "git-branch-foreground": "#FFF",
         "dotnet-foreground": "#ac99ea",
+        "git-foreground": "#DDB15F",
+        "git-branch-status-foreground": "#a3a5e7",
+        "git-changes-foreground": "#e7b5a3",
+        "git-staging-foreground": "#c7e7a3",
+        "prompt-foreground": "#a9a9a9",
         "ellapsed-foreground": "#a9a9a9",
         "status-ok-foreground": "#68db7f",
         "status-error-foreground": "#E36464"
@@ -18,7 +21,7 @@
                 {
                     "foreground": "p:time-foreground",
                     "properties": {
-                        "time_format": "15:04:05"
+                        "time_format": "15:04"
                     },
                     "style": "plain",
                     "template": "[{{ .CurrentDate | date .Format }}]",
@@ -40,40 +43,27 @@
                     "type": "path"
                 },
                 {
-                    "foreground": "p:git-foreground",
-                    "properties": {
-                        "branch_icon": "",
-                        "fetch_upstream_icon": true
-                    },
-                    "style": "plain",
-                    "template": " {{ .UpstreamIcon }}(<#FFF>{{ .HEAD }}</>)",
-                    "type": "git"
-                },
-                {
                     "type": "dotnet",
                     "style": "plain",
                     "foreground": "p:dotnet-foreground",
                     "template": " \udb81\ude10 {{ .Full }}"
                 },
                 {
-                    "type": "git",
-                    "powerline_symbol": "",
-                    "foreground": "#193549",
-                    "background": "#fae635",
-                    "background_templates": [
-                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
-                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
-                        "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
-                        "{{ if gt .Behind 0 }}#B388FB{{ end }}"
-                    ],
-                    "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
+                    "foreground": "p:git-foreground",
                     "properties": {
+                        "branch_icon": "",
                         "fetch_status": true,
-                        "fetch_upstream_icon": true,
-                        "untracked_modes": {
-                            "/Users/user/Projects/oh-my-posh/": "no"
-                        }
-                    }
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "plain",
+                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if or .BranchStatus .Working.Changed .Staging.Changed }}(<p:git-branch-status-foreground>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</><p:git-changes-foreground>{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}</><p:git-staging-foreground>{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}</>){{ end }}",
+                    "type": "git"
+                },
+                {
+                    "foreground": "p:prompt-foreground",
+                    "style": "plain",
+                    "template": "💃",
+                    "type": "text"
                 }
             ],
             "type": "prompt"
