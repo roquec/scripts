@@ -87,7 +87,7 @@
                         "always_enabled": true
                     },
                     "style": "plain",
-                    "template": " {{ if eq .Code 0 }}\udb82\udcd0{{ else }}<p:status-error-foreground>\udb80\uded4</>{{end}} ",
+                    "template": "{{ if eq .Code 0 }}💚{{ else }}<p:status-error-foreground>💔</>{{end}}",
                     "type": "status"
                 }
             ],
