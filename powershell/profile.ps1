@@ -31,5 +31,5 @@ function open($path)
 
 function github
 {
-	cd C:\github
+    cd C:\github
 }
