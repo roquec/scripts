@@ -1,0 +1,109 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "palette": {
+        "time-foreground": "#a9a9a9",
+        "session-foreground": "#E36464",
+        "path-foreground": "#56B6C2",
+        "git-foreground": "#DDB15F",
+        "git-branch-foreground": "#FFF",
+        "dotnet-foreground": "#ac99ea",
+        "ellapsed-foreground": "#a9a9a9",
+        "status-ok-foreground": "#68db7f",
+        "status-error-foreground": "#E36464"
+    },
+    "blocks": [
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "foreground": "p:time-foreground",
+                    "properties": {
+                        "time_format": "15:04:05"
+                    },
+                    "style": "plain",
+                    "template": "[{{ .CurrentDate | date .Format }}]",
+                    "type": "time"
+                },
+                {
+                    "foreground": "p:session-foreground",
+                    "style": "plain",
+                    "template": " \uf2bd {{ .UserName }}",
+                    "type": "session"
+                },
+                {
+                    "foreground": "p:path-foreground",
+                    "properties": {
+                        "style": "folder"
+                    },
+                    "style": "plain",
+                    "template": " \ue5ff {{ .Path }}",
+                    "type": "path"
+                },
+                {
+                    "foreground": "p:git-foreground",
+                    "properties": {
+                        "branch_icon": "",
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "plain",
+                    "template": " {{ .UpstreamIcon }}(<#FFF>{{ .HEAD }}</>)",
+                    "type": "git"
+                },
+                {
+                    "type": "dotnet",
+                    "style": "plain",
+                    "foreground": "p:dotnet-foreground",
+                    "template": " \udb81\ude10 {{ .Full }}"
+                },
+                {
+                    "type": "git",
+                    "powerline_symbol": "",
+                    "foreground": "#193549",
+                    "background": "#ffeb3b",
+                    "background_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+                        "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+                        "{{ if gt .Behind 0 }}#B388FB{{ end }}"
+                    ],
+                    "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "untracked_modes": {
+                            "/Users/user/Projects/oh-my-posh/": "no"
+                        }
+                    }
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "segments": [
+                {
+                    "foreground": "p:ellapsed-foreground",
+                    "properties": {
+                        "style": "roundrock",
+                        "threshold": 0
+                    },
+                    "style": "plain",
+                    "template": "~{{ .FormattedMs }}",
+                    "type": "executiontime"
+                },
+                {
+                    "foreground": "p:status-ok-foreground",
+                    "properties": {
+                        "always_enabled": true
+                    },
+                    "style": "plain",
+                    "template": " {{ if eq .Code 0 }}\udb82\udcd0{{ else }}<p:status-error-foreground>\udb80\uded4</>{{end}} ",
+                    "type": "status"
+                }
+            ],
+            "type": "rprompt"
+        }
+    ],
+    "final_space": true,
+    "version": 2
+}
