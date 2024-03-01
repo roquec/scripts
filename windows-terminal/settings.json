@@ -1,0 +1,96 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    // Custom actions for ease of use (ctrl+c, ctrl+v...)
+    "actions": 
+    [
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        }
+    ],
+
+    // Default profile is Powershell
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Campbell",
+            "font": 
+            {
+                // Using Nerd Font for icons
+                "face": "JetBrainsMono Nerd Font",
+                "fontSize": 13.0
+            },
+            "opacity": 75,
+            "startingDirectory": ".",
+            "useAcrylic": true
+        },
+        "list": 
+        [
+            {
+                "name": "PowerShell",
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "source": "Windows.Terminal.PowershellCore",
+                "commandline": "pwsh.exe -NoLogo",
+                "elevate": false,
+                "hidden": false,
+                "startingDirectory": "C:\\github"
+            }
+        ]
+    },
+
+    // Color scheme
+    "schemes": 
+    [
+        {
+            "background": "#242424",
+            "black": "#0C0C0C",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#3B78FF",
+            "brightCyan": "#61D6D6",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#B4009E",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#F9F1A5",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#CCCCCC",
+            "green": "#13A10E",
+            "name": "Campbell",
+            "purple": "#881798",
+            "red": "#C50F1F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#C19C00"
+        }
+    ],
+
+    // Tab width config
+    "tabWidthMode": "titleLength"
+}
