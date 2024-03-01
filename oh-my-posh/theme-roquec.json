@@ -9,7 +9,7 @@
         "git-branch-status-foreground": "#a3a5e7",
         "git-changes-foreground": "#e7b5a3",
         "git-staging-foreground": "#c7e7a3",
-        "prompt-foreground": "#a9a9a9",
+        "prompt-foreground": "#cccccc",
         "ellapsed-foreground": "#a9a9a9",
         "status-ok-foreground": "#68db7f",
         "status-error-foreground": "#E36464"
@@ -62,7 +62,7 @@
                 {
                     "foreground": "p:prompt-foreground",
                     "style": "plain",
-                    "template": "💃",
+                    "template": " \u276f",
                     "type": "text"
                 }
             ],
