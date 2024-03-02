@@ -1,7 +1,7 @@
 Write-Output "Installing applications via WinGet"
 
 $InstallApps = @(
-    "7zip.7zip"
+    <#"7zip.7zip"
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
     "Microsoft.NuGet"
@@ -14,22 +14,22 @@ $InstallApps = @(
     "Microsoft.WindowsTerminal"
     "Notepad++.Notepad++"
     "OpenJS.NodeJS"
-    "VideoLAN.VLC"
+    "VideoLAN.VLC" #>
     "AgileBits.1Password"
 )
 
 foreach ($appName in $InstallApps)
 {
-    Write-Information "Installing $appName"
-    winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements
+    Write-Output "Installing $appName"
+    winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log
     if ($LASTEXITCODE -eq 0)
     {
-        Write-Information "$appName installed successfully"
+        Write-Output "$appName installed successfully"
     }
     # 0x8A150061 (APPINSTALLER_CLI_ERROR_PACKAGE_ALREADY_INSTALLED)
     elseif ($LASTEXITCODE -eq -1978335135)
     {
-        Write-Information "$appName already installed"
+        Write-Output "$appName already installed"
     }
     else
     {
