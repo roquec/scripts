@@ -13,6 +13,12 @@ if (-not (Test-Path -Path $settingsPath)) {
 $referenceSettings = Get-Content -Path "$PSScriptRoot\..\..\windows\windows-terminal\settings.json" -Raw 
 $settings = Get-Content -Path $settingsPath -Raw
 
+Write-Output "REFERECE SETTINGS-------------"
+Write-Output $referenceSettings
+Write-Output 
+Write-Output "SETTINGS-------------"
+Write-Output $settings
+
 if($settings -ne $referenceSettings)
 {
     Write-Error "Windows Terminal settings does not match reference."
