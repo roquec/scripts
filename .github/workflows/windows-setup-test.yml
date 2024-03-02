@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v3  # Checks-out your repository under $GITHUB_WORKSPACE
 
     - name: Execute BAT file
-      run: .\windows\setup.bat
-      shell: cmd
+      run: |
+        .\windows\setup.ps1
 
     - name: Verify Installation
       run: winget list
