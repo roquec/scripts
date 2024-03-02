@@ -10,7 +10,7 @@ if (-not (Test-Path -Path $settingsPath)) {
     Write-Error "Windows Terminal settings not found."
 }
 
-$referenceSettings = Get-Content -Path ".\windows\windows-terminal\settings.json" -Raw 
+$referenceSettings = Get-Content -Path "$PSScriptRoot\..\..\windows\windows-terminal\settings.json" -Raw 
 $settings = Get-Content -Path $settingsPath -Raw
 
 if($settings -ne $referenceSettings)
@@ -31,7 +31,7 @@ if (-not (Test-Path -Path $profilePath)) {
     Write-Error "PowerShell profile not found."
 }
 
-$referenceProfile = Get-Content -Path ".\windows\powershell\profile.ps1" -Raw
+$referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Raw
 $pwshProfile = Get-Content -Path $profilePath -Raw
 
 if($pwshProfile -ne $referenceProfile)
