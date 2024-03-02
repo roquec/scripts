@@ -7,15 +7,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Install winget
       uses: Cyberboss/install-winget@v1
       
     - name: Execute script
       shell: PowerShell
-      run: .\windows\setup.ps1
+      run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
 
+    - uses: actions/checkout@v4
+    
     - name: Verify Installation
       shell: PowerShell
       run: .\.github\actions\verify-installation.ps1
