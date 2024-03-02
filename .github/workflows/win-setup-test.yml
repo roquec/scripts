@@ -16,9 +16,15 @@ jobs:
 
     - uses: actions/checkout@v4
 
+    - name: Add to PATH
+      shell: pwsh
+      run: echo "C:\Users\runneradmin\AppData\Local\Programs\oh-my-posh\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
     - name: Verify Installation
+      shell: pwsh
       run: .\.github\actions\verify-installation.ps1
       
     - name: Verify Terminal Config
+      shell: pwsh
       run: .\.github\actions\verify-terminal-config.ps1
 
