@@ -9,6 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4  # Checks-out your repository under $GITHUB_WORKSPACE
 
+    - name: Install winget
+      uses: Cyberboss/install-winget@v1
+      
     - name: Execute script
       run: |
         .\windows\setup.ps1
