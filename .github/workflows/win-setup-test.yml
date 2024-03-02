@@ -3,12 +3,12 @@ name: Test Windows setup script
 on: [push]  # Trigger the workflow on push events to any branch. You can customize this.
 
 jobs:
-  run-bat:
+  test:
     runs-on: windows-latest  # Use the latest Windows runner available on GitHub Actions
 
     steps:
-    - uses: actions/checkout@v3  # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v4  # Checks-out your repository under $GITHUB_WORKSPACE
 
-    - name: Execute BAT file
+    - name: Execute script
       run: |
         .\windows\setup.ps1
