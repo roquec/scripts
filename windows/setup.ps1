@@ -43,10 +43,7 @@ foreach ($appName in $apps)
 
 # Update path variable after the installations
 Write-Output "Updating path variable"
-$Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-[Environment]::SetEnvironmentVariable("Path", $Path, "Process")
-$env:Path += ";C:\Users\user\AppData\Local\Programs\oh-my-posh\bin"
-
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 Write-Output $env:Path
 
 Write-Output "Configuring Windows Terminal"

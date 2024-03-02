@@ -1,1 +1,1 @@
-Install-Module -Name Terminal-Icons -Repository PSGallery -AcceptLicense
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
