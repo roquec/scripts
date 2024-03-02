@@ -41,12 +41,15 @@ foreach ($appName in $apps)
     }
 }
 
-Start-Sleep -Seconds 15
+Start-Sleep -Seconds 60
 
 # Update path variable after the installations
 Write-Output "Updating path variable"
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-Write-Output $env:Path
+$Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", $Path, "Process")
+Write-Output $Path
+
+Start-Sleep -Seconds 60
 
 Write-Output "Configuring Windows Terminal"
 $windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
