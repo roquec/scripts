@@ -29,19 +29,21 @@ foreach ($appName in $apps)
         $minutes = $elapsed.Minutes
         $seconds = $elapsed.Seconds
         $milliseconds = $elapsed.Milliseconds
-        Write-Host "+ $appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms" -ForegroundColor Green
+        Write-Host "+ $appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms" -ForegroundColor Gray
     }
     elseif ($LASTEXITCODE -eq -1978335135) # 0x8A150061
     {
-        Write-Host "- $appName already installed" -ForegroundColor Yellow
+        Write-Host "- $appName already installed" -ForegroundColor Gray
     }
     else
     {
         Write-Error "x $appName failed to install! winget exit code $LASTEXITCODE"
     }
-    Write-Host " "
 }
+Write-Host " "
+Write-Host "All apps installed!" -ForegroundColor Green
 
+Write-Host " "
 Write-Host " "
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host "|       Updating path variables       |" -ForegroundColor White
@@ -89,7 +91,7 @@ Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host " "
 $fontsSetup = $PSScriptRoot + "\fonts\setup.ps1"
 & $fontsSetup
-Write-Host "Fonts installed!" -ForegroundColor Green
+Write-Host "All fonts installed!" -ForegroundColor Green
 
 
 Write-Host " "
