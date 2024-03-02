@@ -41,7 +41,7 @@ foreach ($appName in $apps)
     }
 }
 
-winget install JanDeDobbeleer.OhMyPosh -s winget --accept-package-agreements --accept-source-agreements
+Start-Sleep -Seconds 15
 
 # Update path variable after the installations
 Write-Output "Updating path variable"

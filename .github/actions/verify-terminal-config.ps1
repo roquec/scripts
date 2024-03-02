@@ -36,9 +36,6 @@ if (-not (Test-Path -Path $profilePath)) {
 $referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
 $pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
 
-Write-Output $referenceProfile
-Write-Output "------------------------"
-Write-Output $pwshProfile
 
 if($pwshProfile -ne $referenceProfile)
 {
