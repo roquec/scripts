@@ -5,9 +5,9 @@ $apps = @(
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
     "Microsoft.NuGet"
-    "Microsoft.PowerToys"
+    #"Microsoft.PowerToys"
     "Microsoft.RemoteDesktopClient"
-    "Microsoft.SQLServerManagementStudio"
+    #"Microsoft.SQLServerManagementStudio"
     "Microsoft.VisualStudioCode"
     "Microsoft.VisualStudio.2022.Community"
     "Notepad++.Notepad++"
@@ -19,7 +19,7 @@ $apps = @(
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host "|  Installing applications via WinGet |" -ForegroundColor White
 Write-Host "---------------------------------------" -ForegroundColor White
-Write-Host "`n"
+Write-Host " "
 
 foreach ($appName in $apps)
 {

@@ -11,16 +11,16 @@ jobs:
       uses: Cyberboss/install-winget@v1
       
     - name: Execute script
-      shell: PowerShell
+      shell: pwsh
       run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
 
     - uses: actions/checkout@v4
 
     - name: Verify Installation
-      shell: PowerShell
+      shell: pwsh
       run: .\.github\actions\verify-installation.ps1
       
     - name: Verify Terminal Config
-      shell: PowerShell
+      shell: pwsh
       run: .\.github\actions\verify-terminal-config.ps1
 
