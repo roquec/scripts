@@ -21,7 +21,7 @@ $apps = @(
 foreach ($appName in $apps)
 {
     Write-Output "Installing $appName"
-    winget install $appName --silent --accept-package-agreements --accept-source-agreements > setup.log
+    winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log
     if ($LASTEXITCODE -eq 0)
     {
         Write-Output "$appName installed successfully"
