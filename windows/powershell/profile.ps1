@@ -43,6 +43,16 @@ function github
 {
 	Set-Location C:\github
 }
+
+function yeet($msg){
+    if(-not $msg){
+        $msg = "fix"
+    }
+    git add .
+    git commit -m "$msg"
+    git push
+}
+
 Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 # Move cursor to start so initial prompt overwrites loading text
