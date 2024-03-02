@@ -46,6 +46,8 @@ foreach ($appName in $apps)
 Write-Output "Updating path variable"
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 
+Write-Output $env:Path
+
 Write-Output "Configuring Windows Terminal"
 $windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
 & $windowsTerminalSetup
