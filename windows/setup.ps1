@@ -26,7 +26,10 @@ foreach ($appName in $apps)
     $elapsed = Measure-Command { winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log }
     if ($LASTEXITCODE -eq 0)
     {
-        Write-Output "$appName installed successfully in ${$elapsed.Minutes}m ${$elapsed.Seconds}s ${$elapsed.Milliseconds}ms"
+        $minutes = $elapsed.Minutes
+        $seconds = $elapsed.Seconds
+        $milliseconds = $elapsed.Milliseconds
+        Write-Output "$appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms"
     }
     # 0x8A150061 (APPINSTALLER_CLI_ERROR_PACKAGE_ALREADY_INSTALLED)
     elseif ($LASTEXITCODE -eq -1978335135)
@@ -44,10 +47,10 @@ Write-Output "Updating path variable"
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 
 Write-Output "Configuring Windows Terminal"
-& ($PSScriptRoot + "\windows-terminal\setup.ps1")
+& "$PSScriptRoot\windows-terminal\setup.ps1"
 
 Write-Output "Configuring PowerShell"
-& ($PSScriptRoot + "\powershell\setup.ps1")
+& "$PSScriptRoot\powershell\setup.ps1"
 
 Write-Output "Installing fonts"
-& ($PSScriptRoot + "\fonts\setup.ps1")
+& "$PSScriptRoot\fonts\setup.ps1"
