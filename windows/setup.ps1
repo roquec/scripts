@@ -45,6 +45,7 @@ foreach ($appName in $apps)
 Write-Output "Updating path variable"
 $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 [Environment]::SetEnvironmentVariable("Path", $Path, "Process")
+$env:Path += ";C:\Users\user\AppData\Local\Programs\oh-my-posh\bin"
 
 Write-Output $env:Path
 
