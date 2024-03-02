@@ -1,21 +1,24 @@
 Write-Output "Installing applications via WinGet"
 
 $apps = @(
+    "Microsoft.PowerShell"
+    "JanDeDobbeleer.OhMyPosh"
+    "Microsoft.WindowsTerminal"
+    <#
     "7zip.7zip"
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
     "Microsoft.NuGet"
-    "Microsoft.PowerShell"
     "Microsoft.PowerToys"
     "Microsoft.RemoteDesktopClient"
     "Microsoft.SQLServerManagementStudio"
     "Microsoft.VisualStudioCode"
     "Microsoft.VisualStudio.2022.Community"
-    "Microsoft.WindowsTerminal"
     "Notepad++.Notepad++"
     "OpenJS.NodeJS"
     "VideoLAN.VLC"
     "AgileBits.1Password"
+    #>
 )
 
 foreach ($appName in $apps)
@@ -37,6 +40,7 @@ foreach ($appName in $apps)
     }
 }
 
+Update-PathVariable
 
 Write-Output "Configuring Windows Terminal"
 $windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
