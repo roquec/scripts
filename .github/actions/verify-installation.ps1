@@ -20,10 +20,10 @@ $appList = winget list
 
 foreach ($appName in $apps)
 {
-    $appList = winget list | Select-String "$appName"
+    $versions = $appList | Select-String "$appName"
 
-    if ($null -ne $appList) {
-        foreach ($app in $appList) {
+    if ($null -ne $versions) {
+        foreach ($app in $versions) {
             # Extracts and cleans up the application name and version from the output
             $appDetails = $app -split '\s+', 0, 'TrimEmptyEntries'
             $installedAppName = $appDetails[0]

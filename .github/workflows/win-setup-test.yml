@@ -13,11 +13,14 @@ jobs:
       uses: Cyberboss/install-winget@v1
       
     - name: Execute script
+      shell: PowerShell
       run: .\windows\setup.ps1
 
     - name: Verify Installation
+      shell: PowerShell
       run: .\.github\actions\verify-installation.ps1
       
     - name: Verify Terminal Config
+      shell: PowerShell
       run: .\.github\actions\verify-terminal-config.ps1
 
