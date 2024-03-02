@@ -1,4 +1,6 @@
 # Check Windows Terminal
+Write-Output "Verifying Windows Terminal configuration..."
+
 $localAppData = $env:LOCALAPPDATA
 $searchPattern = "Microsoft.WindowsTerminal*\LocalState"
 $settingsDir = Get-ChildItem -Path "$localAppData\Packages" -Recurse | Where-Object { $_.FullName -like "*$searchPattern" } | Select-Object -First 1
@@ -15,10 +17,16 @@ if($settings -ne $referenceSettings)
 {
     Write-Error "Windows Terminal settings does not match reference."
 }
+else
+{
+    Write-Output "Windows Terminal configuration is OK"
+}
 
 
 # Check PowerShell
-$profilePath = $PROFILE
+Write-Output "Verifying PowerShell configuration..."
+
+$profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\profile.ps1"
 if (-not (Test-Path -Path $profilePath)) {
     Write-Error "PowerShell profile not found."
 }
@@ -29,4 +37,8 @@ $pwshProfile = Get-Content -Path $profilePath -Raw
 if($pwshProfile -ne $referenceProfile)
 {
     Write-Error "PowerShell profile does not match reference."
+}
+else
+{
+    Write-Output "PowerShell configuration is OK"
 }
