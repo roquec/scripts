@@ -45,8 +45,8 @@ foreach ($appName in $apps)
 # Update path variable after the installations
 Write-Output "Updating path variable"
 $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-$Path += ";C:\Users\runneradmin\AppData\Local\Programs\oh-my-posh\bin"
 [Environment]::SetEnvironmentVariable("Path", $Path, "Process")
+$env:Path += ";C:\Users\user\AppData\Local\Programs\oh-my-posh\bin"
 
 Write-Output $env:Path
 
@@ -57,6 +57,10 @@ $windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
 Write-Output "Configuring PowerShell"
 $powershellSetup = $PSScriptRoot + "\powershell\setup.ps1"
 & $powershellSetup
+
+Write-Output "Configuring Terminal Icons"
+$terminalIconsSetup = $PSScriptRoot + "\terminal-icons\setup.ps1"
+& $terminalIconsSetup
 
 Write-Output "Installing fonts"
 $fontsSetup = $PSScriptRoot + "\powershell\setup.ps1"
