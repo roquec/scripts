@@ -1,4 +1,4 @@
-name: Test Windows setup script
+name: Windows setup tests
 
 on: [workflow_dispatch]
 
@@ -15,12 +15,10 @@ jobs:
       run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
 
     - uses: actions/checkout@v4
-    
+
     - name: Verify Installation
-      shell: PowerShell
       run: .\.github\actions\verify-installation.ps1
       
     - name: Verify Terminal Config
-      shell: PowerShell
       run: .\.github\actions\verify-terminal-config.ps1
 

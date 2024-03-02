@@ -47,10 +47,13 @@ Write-Output "Updating path variable"
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 
 Write-Output "Configuring Windows Terminal"
-& "$PSScriptRoot\windows-terminal\setup.ps1"
+$windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
+& $windowsTerminalSetup
 
 Write-Output "Configuring PowerShell"
-& "$PSScriptRoot\powershell\setup.ps1"
+$powershellSetup = $PSScriptRoot + "\powershell\setup.ps1"
+& $powershellSetup
 
 Write-Output "Installing fonts"
-& "$PSScriptRoot\fonts\setup.ps1"
+$fontsSetup = $PSScriptRoot + "\powershell\setup.ps1"
+& $fontsSetup
