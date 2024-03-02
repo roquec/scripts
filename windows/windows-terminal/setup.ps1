@@ -11,6 +11,11 @@ $searchPattern = "Microsoft.WindowsTerminal*\LocalState"
 $settingsDir = Get-ChildItem -Path "$localAppData\Packages" -Recurse | Where-Object { $_.FullName -like "*$searchPattern" } | Select-Object -First 1
 $settingsPath = Join-Path -Path $settingsDir.FullName -ChildPath "settings.json"
 
+Write-Output $localAppData
+Write-Output $settingsDir
+Write-Output $settingsPath
+
+
 if (-not ($settingsDir -and (Test-Path -Path $settingsDir))) {
     Write-Error "Windows Terminal LocalState directory not found. $settingsDir"
 }

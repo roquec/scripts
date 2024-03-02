@@ -1,3 +1,5 @@
+. $PROFILE
+
 # Check Windows Terminal
 Write-Output "Verifying Windows Terminal configuration..."
 

@@ -1,3 +1,5 @@
+. $PROFILE
+
 $apps = @(
     "7zip.7zip"
     "Git.Git"
