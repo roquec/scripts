@@ -1,4 +1,4 @@
-Write-Header "Installing applications via WinGet"
+Write-Output "Installing applications via WinGet"
 
 $InstallApps = @(
     "7zip.7zip"
@@ -20,16 +20,16 @@ $InstallApps = @(
 
 foreach ($appName in $InstallApps)
 {
-    Write-Message "Installing $appName"
+    Write-Information "Installing $appName"
     winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements
     if ($LASTEXITCODE -eq 0)
     {
-        Write-Message "$appName installed successfully"
+        Write-Information "$appName installed successfully"
     }
     # 0x8A150061 (APPINSTALLER_CLI_ERROR_PACKAGE_ALREADY_INSTALLED)
     elseif ($LASTEXITCODE -eq -1978335135)
     {
-        Write-Message "$appName already installed"
+        Write-Information "$appName already installed"
     }
     else
     {
