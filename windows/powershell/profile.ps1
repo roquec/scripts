@@ -43,7 +43,6 @@ function github
 {
 	Set-Location C:\github
 }
-
 Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 # Move cursor to start so initial prompt overwrites loading text
