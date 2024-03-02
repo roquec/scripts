@@ -1,3 +1,5 @@
+. $PROFILE
+
 Write-Output $env:Path
 
 $apps = @(
