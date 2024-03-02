@@ -34,6 +34,10 @@ if (-not (Test-Path -Path $profilePath)) {
 $referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Raw
 $pwshProfile = Get-Content -Path $profilePath -Raw
 
+Write-Output $referenceProfile
+Write-Output "----------------------------------"
+Write-Output $pwshProfile
+
 if($pwshProfile -ne $referenceProfile)
 {
     Write-Error "PowerShell profile does not match reference."
