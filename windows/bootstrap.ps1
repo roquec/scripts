@@ -6,6 +6,13 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri https://github.com/roquec/scripts/archive/refs/heads/main.zip -OutFile $ZipPath
 $ProgressPreference = 'Continue'
 Expand-Archive -LiteralPath $ZipPath -DestinationPath $TempDir
+
+winget install -e --id Microsoft.PowerShell
+
+$Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", $Path, "Process")
+
 $setupScript = "$TempDir\scripts-main\windows\setup.ps1"
-& $SetupScript @args
+pwsh -File  $SetupScript
+
 Remove-Item $TempDir -Recurse -Force
