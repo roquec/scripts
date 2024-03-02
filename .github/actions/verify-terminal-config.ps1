@@ -1,3 +1,5 @@
+$encoding = 'UTF8'
+
 # Check Windows Terminal
 Write-Output "Verifying Windows Terminal configuration..."
 
@@ -26,7 +28,6 @@ else
 # Check PowerShell
 Write-Output "Verifying PowerShell configuration..."
 
-$encoding = 'UTF8'
 
 $profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
 if (-not (Test-Path -Path $profilePath)) {
