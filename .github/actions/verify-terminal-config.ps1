@@ -10,8 +10,8 @@ if (-not (Test-Path -Path $settingsPath)) {
     Write-Error "Windows Terminal settings not found."
 }
 
-$referenceSettings = Get-Content -Path "$PSScriptRoot\..\..\windows\windows-terminal\settings.json" -Raw 
-$settings = Get-Content -Path $settingsPath -Raw
+$referenceSettings = Get-FileHash "$PSScriptRoot\..\..\windows\windows-terminal\settings.json"
+$settings = Get-FileHash $settingsPath
 
 Write-Output "REFERECE SETTINGS-------------"
 Write-Output "$PSScriptRoot\..\..\windows\windows-terminal\settings.json"
@@ -21,7 +21,7 @@ Write-Output "SETTINGS-------------"
 Write-Output $settingsPath
 Write-Output $settings
 
-if($settings -ne $referenceSettings)
+if($settings.Hash -ne $referenceSettings.Hash)
 {
     Write-Error "Windows Terminal settings does not match reference."
 }
