@@ -1,7 +1,7 @@
 Write-Output "Installing applications via WinGet"
 
-$InstallApps = @(
-    <#"7zip.7zip"
+$apps = @(
+    "7zip.7zip"
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
     "Microsoft.NuGet"
@@ -14,14 +14,14 @@ $InstallApps = @(
     "Microsoft.WindowsTerminal"
     "Notepad++.Notepad++"
     "OpenJS.NodeJS"
-    "VideoLAN.VLC" #>
+    "VideoLAN.VLC"
     "AgileBits.1Password"
 )
 
-foreach ($appName in $InstallApps)
+foreach ($appName in $apps)
 {
     Write-Output "Installing $appName"
-    winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log
+    winget install $appName --silent --accept-package-agreements --accept-source-agreements > setup.log
     if ($LASTEXITCODE -eq 0)
     {
         Write-Output "$appName installed successfully"
@@ -36,3 +36,12 @@ foreach ($appName in $InstallApps)
         Write-Error "$appName failed to install! winget exit code $LASTEXITCODE"
     }
 }
+
+
+Write-Output "Configuring Windows Terminal"
+$windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
+& $windowsTerminalSetup
+
+Write-Output "Configuring PowerShell"
+$powershellSetup = $PSScriptRoot + "\powershell\setup.ps1"
+& $powershellSetup

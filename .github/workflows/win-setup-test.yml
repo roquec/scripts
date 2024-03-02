@@ -1,17 +1,23 @@
 name: Test Windows setup script
 
-on: [push]  # Trigger the workflow on push events to any branch. You can customize this.
+on: [workflow_dispatch]
 
 jobs:
-  test:
-    runs-on: windows-latest  # Use the latest Windows runner available on GitHub Actions
+  setup:
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4  # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v4
 
     - name: Install winget
       uses: Cyberboss/install-winget@v1
       
     - name: Execute script
-      run: |
-        .\windows\setup.ps1
+      run: .\windows\setup.ps1
+
+    - name: Verify Installation
+      run: .\.github\actions\verify-installation.ps1
+      
+    - name: Verify Terminal Config
+      run: .\.github\actions\verify-terminal-config.ps1
+

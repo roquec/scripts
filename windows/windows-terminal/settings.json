@@ -52,7 +52,7 @@
         "list": 
         [
             {
-                "name": "PowerShell",
+                "name": "pwsh",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "source": "Windows.Terminal.PowershellCore",
                 "commandline": "pwsh.exe -NoLogo",

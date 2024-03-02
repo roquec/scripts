@@ -1,19 +1,18 @@
-$ProgressColor = [System.ConsoleColor]::Gray
+$progressColor = [System.ConsoleColor]::Gray
 
-Write-Host -NoNewLine "🚀 PowerShell" -ForegroundColor $ProgressColor
+Write-Host -NoNewLine "🚀 PowerShell" -ForegroundColor $progressColor
 
 # Get the current PowerShell version
 $Version = $PSVersionTable.PSVersion
-Write-Host -NoNewLine " ($Version) ." -ForegroundColor $ProgressColor
+Write-Host -NoNewLine " ($Version) ." -ForegroundColor $progressColor
 
 #Oh My Posh config
-oh-my-posh init pwsh | Invoke-Expression
-oh-my-posh init pwsh --config "C:\github\scripts\oh-my-posh\theme-roquec.json" | Invoke-Expression
-Write-Host -NoNewLine "." -ForegroundColor $ProgressColor
+oh-my-posh init pwsh --config "C:\github\scripts\windows\oh-my-posh\theme-roquec.json" | Invoke-Expression
+Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 #Terminal Icons config
 Import-Module -Name Terminal-Icons
-Write-Host -NoNewLine "." -ForegroundColor $ProgressColor
+Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 #PSReadLine config
 Import-Module PSReadLine
@@ -21,36 +20,31 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 Set-PSReadlineKeyHandler -Chord Tab -Function MenuComplete
-Write-Host -NoNewLine "." -ForegroundColor $ProgressColor
+Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 #Custom actions
 function clr
 {
-    clear
+    Clear-Host
 }
 
 function edit($path)
 {
-    start notepad++ $path
+    Start-Process notepad++ $path
 }
 
 function open($path)
 {
-    cd $path
-    ii .
+    Set-Location $path
+    Invoke-Item .
 }
 
 function github
 {
-	cd C:\github
+	Set-Location C:\github
 }
 
-function naos
-{
-    cd C:\github\naos
-}
-
-Write-Host -NoNewLine "." -ForegroundColor $ProgressColor
+Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 # Move cursor to start so initial prompt overwrites loading text
 [Console]::SetCursorPosition(0, 0)
