@@ -7,5 +7,5 @@ Invoke-WebRequest -Uri https://github.com/roquec/scripts/archive/refs/heads/main
 $ProgressPreference = 'Continue'
 Expand-Archive -LiteralPath $ZipPath -DestinationPath $TempDir
 $setupScript = "$TempDir\scripts-main\windows\setup.ps1"
-#& $SetupScript @args
-#Remove-Item $TempDir -Recurse -Force
+& $SetupScript @args
+Remove-Item $TempDir -Recurse -Force
