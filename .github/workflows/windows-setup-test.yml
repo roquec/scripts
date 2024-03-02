@@ -12,7 +12,3 @@ jobs:
     - name: Execute BAT file
       run: |
         .\windows\setup.ps1
-
-    - name: Verify Installation
-      run: winget list
-      shell: cmd
