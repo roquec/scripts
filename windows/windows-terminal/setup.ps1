@@ -16,7 +16,7 @@ Write-Output $settingsDir
 Write-Output $settingsPath
 
 
-if (-not ($settingsDir -and (Test-Path -Path $settingsDir -PathType Container))) {
+if (-not ($settingsDir -and (Test-Path -Path $settingsDir.FullName -PathType Container))) {
     Write-Error "Windows Terminal LocalState directory not found. $settingsDir"
 }
 

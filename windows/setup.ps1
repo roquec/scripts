@@ -44,7 +44,8 @@ foreach ($appName in $apps)
 
 # Update path variable after the installations
 Write-Output "Updating path variable"
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+$Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", $Path, "Process")
 
 Write-Output $env:Path
 
