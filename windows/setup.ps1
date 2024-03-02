@@ -4,7 +4,6 @@ $apps = @(
     "Microsoft.PowerShell"
     "JanDeDobbeleer.OhMyPosh"
     "Microsoft.WindowsTerminal"
-    <#
     "7zip.7zip"
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
@@ -18,7 +17,6 @@ $apps = @(
     "OpenJS.NodeJS"
     "VideoLAN.VLC"
     "AgileBits.1Password"
-    #>
 )
 
 foreach ($appName in $apps)
