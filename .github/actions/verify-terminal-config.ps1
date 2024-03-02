@@ -14,9 +14,11 @@ $referenceSettings = Get-Content -Path "$PSScriptRoot\..\..\windows\windows-term
 $settings = Get-Content -Path $settingsPath -Raw
 
 Write-Output "REFERECE SETTINGS-------------"
+Write-Output "$PSScriptRoot\..\..\windows\windows-terminal\settings.json"
 Write-Output $referenceSettings
-Write-Output 
+Write-Output "----"
 Write-Output "SETTINGS-------------"
+Write-Output $settingsPath
 Write-Output $settings
 
 if($settings -ne $referenceSettings)
