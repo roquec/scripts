@@ -7,7 +7,7 @@ Invoke-WebRequest -Uri https://github.com/roquec/scripts/archive/refs/heads/main
 $ProgressPreference = 'Continue'
 Expand-Archive -LiteralPath $ZipPath -DestinationPath $TempDir
 
-winget install -e --id Microsoft.PowerShell --accept-package-agreements --accept-source-agreements
+winget install -e --id Microsoft.PowerShell --accept-package-agreements --accept-source-agreements > setup.log
 
 $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 [Environment]::SetEnvironmentVariable("Path", $Path, "Process")
