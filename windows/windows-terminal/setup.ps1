@@ -12,7 +12,7 @@ $settingsDir = Get-ChildItem -Path "$localAppData\Packages" -Recurse | Where-Obj
 $settingsPath = Join-Path -Path $settingsDir.FullName -ChildPath "settings.json"
 
 if (-not ($settingsDir -and (Test-Path -Path $settingsDir))) {
-    Write-Error "Windows Terminal LocalState directory not found."
+    Write-Error "Windows Terminal LocalState directory not found. $settingsDir"
 }
 
 # Overwrite current settings with reference
