@@ -1,9 +1,6 @@
-Write-Output "Installing applications via WinGet"
-
 $apps = @(
     "JanDeDobbeleer.OhMyPosh"
     "Microsoft.WindowsTerminal"
-    <#
     "7zip.7zip"
     "Git.Git"
     "Microsoft.DotNet.SDK.8"
@@ -17,8 +14,12 @@ $apps = @(
     "OpenJS.NodeJS"
     "VideoLAN.VLC"
     "AgileBits.1Password"
-    #>
 )
+
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|  Installing applications via WinGet |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
 
 foreach ($appName in $apps)
 {
@@ -28,32 +29,69 @@ foreach ($appName in $apps)
         $minutes = $elapsed.Minutes
         $seconds = $elapsed.Seconds
         $milliseconds = $elapsed.Milliseconds
-        Write-Output "$appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms"
+        Write-Host "$appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms" -ForegroundColor Green
     }
-    # 0x8A150061 (APPINSTALLER_CLI_ERROR_PACKAGE_ALREADY_INSTALLED)
-    elseif ($LASTEXITCODE -eq -1978335135)
+    elseif ($LASTEXITCODE -eq -1978335135) # 0x8A150061
     {
-        Write-Output "$appName already installed"
+        Write-Host "$appName already installed" -ForegroundColor Yellow
     }
     else
     {
         Write-Error "$appName failed to install! winget exit code $LASTEXITCODE"
     }
+    Write-Host "`n"
 }
 
+Write-Host "`n"
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|       Updating path variables       |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
+$Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", $Path, "Process")
+Write-Host "Path environment variable updated!" -ForegroundColor Green
 
-Write-Output "Configuring Windows Terminal"
+Write-Host "`n"
+Write-Host "`n"
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|     Configuring Windows Terminal    |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
 $windowsTerminalSetup = $PSScriptRoot + "\windows-terminal\setup.ps1"
 & $windowsTerminalSetup
+Write-Host "Windows Terminal configured!" -ForegroundColor Green
 
-Write-Output "Configuring PowerShell"
+Write-Host "`n"
+Write-Host "`n"
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|        Configuring PowerShell       |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
 $powershellSetup = $PSScriptRoot + "\powershell\setup.ps1"
 & $powershellSetup
+Write-Host "PowerShell configured!" -ForegroundColor Green
 
-Write-Output "Configuring Terminal Icons"
+Write-Host "`n"
+Write-Host "`n"
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|      Installing Terminal Icons      |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
 $terminalIconsSetup = $PSScriptRoot + "\terminal-icons\setup.ps1"
 & $terminalIconsSetup
+Write-Host "Terminal Icons installed!" -ForegroundColor Green
 
-Write-Output "Installing fonts"
-$fontsSetup = $PSScriptRoot + "\powershell\setup.ps1"
+Write-Host "`n"
+Write-Host "`n"
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|           Installing fonts          |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "`n"
+$fontsSetup = $PSScriptRoot + "\fonts\setup.ps1"
 & $fontsSetup
+Write-Host "Fonts installed!" -ForegroundColor Green
+
+
+Write-Host "`n"
+Write-Host "`n"
+Write-Host "WINDOWS SETUP COMPLETED" -ForegroundColor White
