@@ -45,6 +45,7 @@ foreach ($appName in $apps)
 # Update path variable after the installations
 Write-Output "Updating path variable"
 $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+$Path += ";C:\Users\runneradmin\AppData\Local\Programs\oh-my-posh\bin"
 [Environment]::SetEnvironmentVariable("Path", $Path, "Process")
 
 Write-Output $env:Path
