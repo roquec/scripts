@@ -26,17 +26,15 @@ else
 # Check PowerShell
 Write-Output "Verifying PowerShell configuration..."
 
+$encoding = 'UTF8'
+
 $profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
 if (-not (Test-Path -Path $profilePath)) {
     Write-Error "PowerShell profile not found."
 }
 
-$referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Raw
-$pwshProfile = Get-Content -Path $profilePath -Raw
-
-Write-Output $referenceProfile
-Write-Output "----------------------------------"
-Write-Output $pwshProfile
+$referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Encoding $encoding -Raw
+$pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw
 
 if($pwshProfile -ne $referenceProfile)
 {
