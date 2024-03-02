@@ -41,6 +41,8 @@ foreach ($appName in $apps)
     }
 }
 
+winget install JanDeDobbeleer.OhMyPosh -s winget --accept-package-agreements --accept-source-agreements
+
 # Update path variable after the installations
 Write-Output "Updating path variable"
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")

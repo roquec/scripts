@@ -26,7 +26,7 @@ else
 # Check PowerShell
 Write-Output "Verifying PowerShell configuration..."
 
-$profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\profile.ps1"
+$profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
 if (-not (Test-Path -Path $profilePath)) {
     Write-Error "PowerShell profile not found."
 }
