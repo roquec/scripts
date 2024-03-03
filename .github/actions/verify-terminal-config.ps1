@@ -59,3 +59,30 @@ $summary += "`n$message"
 
 
 $summary >> $env:GITHUB_STEP_SUMMARY
+
+
+# Check PowerShell
+$summary += "`n### ⚙️ Oh My Posh"
+Write-Output "Verifying Oh My Posh configuration..."
+
+$profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\theme.json"
+if (-not (Test-Path -Path $profilePath)) {
+    Write-Error "Oh My Posh profile not found."
+}
+$referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\oh-my-posh\theme.json" -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
+$pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
+
+if($pwshProfile -ne $referenceProfile)
+{
+    $message = "❌ Oh My Posh is not properly configured"
+}
+else
+{
+    $message = "✅ Oh My Posh configuration is OK"
+}
+
+Write-Host $message
+$summary += "`n$message"
+
+
+$summary >> $env:GITHUB_STEP_SUMMARY

@@ -7,7 +7,7 @@ $Version = $PSVersionTable.PSVersion
 Write-Host -NoNewLine " ($Version) ." -ForegroundColor $progressColor
 
 #Oh My Posh config
-oh-my-posh init pwsh --config "C:\github\scripts\windows\oh-my-posh\theme-roquec.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$PSScriptRoot\theme.json" | Invoke-Expression
 Write-Host -NoNewLine "." -ForegroundColor $progressColor
 
 #Terminal Icons config

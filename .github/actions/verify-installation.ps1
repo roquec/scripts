@@ -11,7 +11,7 @@ $apps = @(
     "Microsoft.VisualStudio.2022.Community"
     "Microsoft.WindowsTerminal"
     "Notepad++.Notepad++"
-    "NodeJS"
+    "Node.js"
     "VideoLAN.VLC"
     "AgileBits.1Password"
     "JanDeDobbeleer.OhMyPosh"
