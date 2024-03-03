@@ -66,6 +66,16 @@ Write-Host "Windows Terminal configured!" -ForegroundColor Green
 Write-Host " "
 Write-Host " "
 Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host "|        Configuring Oh MY Posh       |" -ForegroundColor White
+Write-Host "---------------------------------------" -ForegroundColor White
+Write-Host " "
+$ohmyposhSetup = $PSScriptRoot + "\oh-my-posh\setup.ps1"
+& $ohmyposhSetup
+Write-Host "Oh MY Posh configured!" -ForegroundColor Green
+
+Write-Host " "
+Write-Host " "
+Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host "|        Configuring PowerShell       |" -ForegroundColor White
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host " "
