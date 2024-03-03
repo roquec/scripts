@@ -25,7 +25,7 @@ foreach ($application in $applications)
     }
     elseif ($LASTEXITCODE -eq -1978335135) # 0x8A150061
     {
-        Write-Output "    - $appName already installed ⚠️"
+        Write-Output "    - $appName already installed 🟡"
     }
     else
     {

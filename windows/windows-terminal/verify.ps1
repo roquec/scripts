@@ -26,11 +26,11 @@ function Get-Result()
     $msg += "⚙️ Windows Terminal Settings:"
     if($ok)
     {
-        $msg += "`n    + OK: Windows Terminal settings are correct! ✅"
+        $msg += "`n    + Windows Terminal settings are correct ✅"
     }
     else
     {
-        $msg += "`n    - Error: Windows Terminal settigns do not match reference ❌"
+        $msg += "`n    - Windows Terminal settigns do not match reference ❌"
     }
 
     $result = New-Object PSObject -Property @{

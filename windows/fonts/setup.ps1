@@ -1,3 +1,5 @@
+Write-Output "✒️ Installing fonts..."
+
 $fontsFolder = (New-Object -ComObject Shell.Application).Namespace(0x14)
 
 [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") | Out-Null
@@ -20,10 +22,10 @@ foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
 
     if (-not( Test-Path -Path "C:\Windows\fonts\$fileName") -and -not($isInstalled)) {
         Get-ChildItem $file | ForEach-Object { $fontsFolder.CopyHere($_.fullname) }
-        Write-Host "+ $fileName installed successfully" -ForegroundColor Gray
+        Write-Output "    + $fileName installed successfully ✅"
     } 
     else 
     {
-        Write-Host "- $fileName already installed" -ForegroundColor Gray
+        Write-Output "    - $fileName already installed ⚠️"
     }
 }

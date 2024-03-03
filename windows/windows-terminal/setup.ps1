@@ -3,7 +3,7 @@ Write-Output "⚙️ Configuring Windows Terminal settings..."
 # Path to the reference settings.json file
 $referenceSettingsPath = "$PSScriptRoot\settings.json"
 
-Write-Output "    - Found reference settings.json file ✅"
+Write-Output "    + Found reference settings.json file ✅"
 
 # Get the base LocalAppData folder
 $localAppData = $env:LOCALAPPDATA
@@ -19,9 +19,9 @@ if (-not ($settingsDir -and (Test-Path -Path $settingsDir.FullName -PathType Con
     Write-Error "Windows Terminal LocalState directory not found. $settingsDir"
 }
 
-Write-Output "    - Copying reference settings file to destination ✅"
+Write-Output "    + Copying reference settings file to destination ✅"
 
 # Overwrite current settings with reference
 Copy-Item -Path $referenceSettingsPath -Destination $settingsPath -Force
 
-Write-Output "    - Windows Terminal settings configured ✅"
+Write-Output "    + Windows Terminal settings configured ✅"

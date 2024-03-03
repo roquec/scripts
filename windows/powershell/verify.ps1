@@ -4,11 +4,21 @@ param(
 
 function Get-Result()
 {
-    $ok = $true
+    $msg += "🚀 PowerShell configuration:"
 
+    $modulesOk = Get-InstalledModule -Name Terminal-Icons -erroraction 'silentlycontinue'
+    if($modulesOk)
+    {
+        $msg += "`n    + OK: All modules installed ✅"
+    }
+    else
+    {
+        $msg += "`n    - Error: Missing modules ❌"
+    }
+
+    $profileOk = $true
     $encoding = 'UTF8'
     $profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
-
     if (Test-Path -Path $profilePath) {
         
         $referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
@@ -16,19 +26,21 @@ function Get-Result()
 
         if($pwshProfile -ne $referenceProfile)
         {
-            $ok = $false
+            $profileOk = $false
         }
     }
 
-    $msg += "🚀 PowerShell Profile:"
-    if($ok)
+    if($profileOk -and $modulesOk)
     {
-        $msg += "`n    + OK: PowerShell profile is correct! ✅"
+        $msg += "`n    + PowerShell profile is correct ✅"
+        $ok = $true
     }
     else
     {
-        $msg += "`n    - Error: PowerShell profile does not match reference ❌"
+        $msg += "`n    - PowerShell profile does not match reference ❌"
+        $ok = $false
     }
+
 
     $result = New-Object PSObject -Property @{
         Ok = $ok

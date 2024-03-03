@@ -23,11 +23,11 @@ function Get-Result()
     $msg += "🎨 Oh My Posh Theme:"
     if($ok)
     {
-        $msg += "`n    + OK: Oh My Posh theme is correct! ✅"
+        $msg += "`n    + Oh My Posh theme is correct ✅"
     }
     else
     {
-        $msg += "`n    - Error: Oh My Posh theme does not match reference ❌"
+        $msg += "`n    - Oh My Posh theme does not match reference ❌"
     }
 
     $result = New-Object PSObject -Property @{
