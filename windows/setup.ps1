@@ -1,46 +1,9 @@
-$apps = @(
-    "JanDeDobbeleer.OhMyPosh"
-    "Microsoft.WindowsTerminal"
-    "7zip.7zip"
-    "Git.Git"
-    "Microsoft.DotNet.SDK.8"
-    "Microsoft.NuGet"
-    "Microsoft.PowerToys"
-    "Microsoft.RemoteDesktopClient"
-    "Microsoft.SQLServerManagementStudio"
-    "Microsoft.VisualStudioCode"
-    "Microsoft.VisualStudio.2022.Community"
-    "Notepad++.Notepad++"
-    "OpenJS.NodeJS"
-    "VideoLAN.VLC"
-    "AgileBits.1Password"
-)
-
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host "|  Installing applications via WinGet |" -ForegroundColor White
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host " "
-
-foreach ($appName in $apps)
-{
-    $elapsed = Measure-Command { winget install $appName --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log }
-    if ($LASTEXITCODE -eq 0)
-    {
-        $minutes = $elapsed.Minutes
-        $seconds = $elapsed.Seconds
-        $milliseconds = $elapsed.Milliseconds
-        Write-Host "+ $appName installed successfully in ${minutes}m ${seconds}s ${milliseconds}ms" -ForegroundColor Gray
-    }
-    elseif ($LASTEXITCODE -eq -1978335135) # 0x8A150061
-    {
-        Write-Host "- $appName already installed" -ForegroundColor Gray
-    }
-    else
-    {
-        Write-Error "x $appName failed to install! winget exit code $LASTEXITCODE"
-    }
-}
-Write-Host " "
+$wingetSetup = $PSScriptRoot + "\winget\setup.ps1"
+& $wingetSetup
 Write-Host "All apps installed!" -ForegroundColor Green
 
 Write-Host " "

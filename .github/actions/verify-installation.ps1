@@ -1,64 +1,42 @@
-$apps = @(
-    "7zip.7zip"
-    "Git.Git"
-    "Microsoft.DotNet.SDK.8"
-    "Microsoft.NuGet"
-    "Microsoft.PowerShell"
-    "Microsoft.PowerToys"
-    "Microsoft.RemoteDesktopClient"
-    "Microsoft.SQLServerManagementStudio"
-    "Microsoft.VisualStudioCode"
-    "Microsoft.VisualStudio.2022.Community"
-    "Microsoft.WindowsTerminal"
-    "Notepad++.Notepad++"
-    "Node.js"
-    "VideoLAN.VLC"
-    "AgileBits.1Password"
-    "JanDeDobbeleer.OhMyPosh"
-)
+$results = Invoke-Expression -Command "$PSScriptRoot\..\..\windows\winget\verify.ps1"
 
-# Execute winget list and capture the output
-$wingetOutput = winget list | Out-String
-# Split the output into lines
-$lines = $wingetOutput -split "`n"
-
-$summary = "## 📝 Windows setup app installation report"
-
-foreach ($line in $lines)
+$total = $results.Apps.Count
+$installedCount = ($results.Apps | Where-Object { $_.Ok }).Count
+if($results.Ok)
 {
-    if($line.StartsWith("Name  "))
-    {
-        $contentLineStart = $lines.IndexOf($line) + 2
-        $nameIndex = 0
-        $nameLength = [regex]::Match( $line,'\bId\b' ).Index - 1
-        $versionIdex = [regex]::Match( $line,'\bVersion\b' ).Index
-        $versionLength = [regex]::Match( $line,'\bAvailable\b' ).Index - $versionIdex
-        break
-    }
+    $installationResult = "✅ OK: All **$total** apps successfully installed!"
+}
+else
+{
+    $installationResult = "❌ Errors: only **$installedCount** out of **$total** apps installed"
 }
 
-
-$installedApps = $lines[$contentLineStart..($lines.Length - 1)]
-foreach ($app in $apps)
+$installationDetails
+foreach ($appResult in $results.Apps)
 {
-    $isInstalled = $false
-    foreach ($installedApp in $installedApps) {
-        if ($installedApp -like "*$app*") {
-            $isInstalled = $true
-            $name = $installedApp.Substring($nameIndex, $nameLength).Trim()
-            $version = $installedApp.Substring($versionIdex, $versionLength).Trim()
-        }
-    }
-
-    if ($isInstalled) {
-        $message = "✅ App ``$name`` is installed with version ``$version``"
+    if($appResult.Ok)
+    {
+        $message = "✅ App ``$($appResult.App)`` is installed with version ``$($appResult.Version)``"
     }
     else
     {
-        $message = "❌ App ``$app`` is not installed"
+        $message = "❌ App ``$($appResult.App)`` is not installed"
     }
-    Write-Host $message
-    $summary += "`n$message"
+    $installationDetails += "`n$message"
 }
+
+$summary = ("
+## 📝 Windows setup app installation report
+
+$($installationResult)
+
+<details>
+    <summary>See details</summary>
+
+    $($installationDetails)
+
+</details>
+
+<br />");
 
 $summary >> $env:GITHUB_STEP_SUMMARY
