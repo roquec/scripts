@@ -13,7 +13,7 @@ $summary = ("
 
 ### ⚙️ Windows Terminal Settings
 
-<div style='padding-left: 40px;'>
+<div style='margin-left: 40px;'>
     $($windowsTerminalResultMsg)
 </div>
 ");
@@ -34,7 +34,7 @@ $summary += ("
 
 ### 🚀 PowerShell Profile
 
-<div style='padding-left: 40px;'>
+<div style='marging-left: 40px;'>
     $($powershellResultMsg)
 </div>
 ");
@@ -55,7 +55,7 @@ $summary += ("
 
 ### 🎨 Oh My Posh Theme
 
-<div style='padding-left: 40px;'>
+<div style='margin-left: 40px;'>
     $($ohmyposhResultMsg)
 </div>
 ");

@@ -57,7 +57,8 @@ $summary = ("
 
 ### 🖥️ Application Installation
 
-<div style='padding-left: 40px;'>
+<div style='margin-left: 40px;'>
+
 $($installationResult)
 
 <details>
@@ -70,7 +71,7 @@ $($installationResult)
 
 ### ✒️ Font Installation 
 
-<div style='padding-left: 40px;'>
+<div style='margin-left: 40px;'>
 
 $($fontsResultMsg)
 

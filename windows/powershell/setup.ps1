@@ -10,3 +10,5 @@ if (-not (Test-Path -Path $profileDir)) {
 
 # Overwrite current profile with reference
 Copy-Item -Path $referenceProfilePath -Destination $profilePath -Force
+
+Get-InstalledModule
