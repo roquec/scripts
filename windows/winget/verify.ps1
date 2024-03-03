@@ -19,6 +19,7 @@ foreach ($line in $lines)
 
 $wingetApps = $lines[$contentLineStart..($lines.Length - 2)]
 
+
 $appResults = @()
 
 $ok = $true

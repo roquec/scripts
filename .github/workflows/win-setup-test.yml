@@ -1,4 +1,4 @@
-name: Windows setup tests
+name: Windows setup test
 
 on: [workflow_dispatch]
 
@@ -10,17 +10,15 @@ jobs:
     - name: Install winget
       uses: Cyberboss/install-winget@v1
       
-    - name: Execute script
+    - name: Run setup script
       shell: PowerShell
       run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
 
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-    - name: Verify Installation
+    - name: Verify
       shell: PowerShell
-      run: pwsh -NoProfile -File .\.github\actions\verify-installation.ps1
-      
-    - name: Verify Terminal Config
-      shell: PowerShell
-      run: pwsh -NoProfile -File .\.github\actions\verify-terminal-config.ps1
-
+      run: pwsh -NoProfile -File .\.github\actions\verify.ps1
