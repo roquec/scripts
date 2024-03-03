@@ -3,17 +3,17 @@ $apps = @(
     "Microsoft.WindowsTerminal"
     "7zip.7zip"
     "Git.Git"
-    "Microsoft.DotNet.SDK.8"
+    #"Microsoft.DotNet.SDK.8"
     "Microsoft.NuGet"
     #"Microsoft.PowerToys"
     "Microsoft.RemoteDesktopClient"
     #"Microsoft.SQLServerManagementStudio"
-    "Microsoft.VisualStudioCode"
-    "Microsoft.VisualStudio.2022.Community"
+    #"Microsoft.VisualStudioCode"
+    #"Microsoft.VisualStudio.2022.Community"
     "Notepad++.Notepad++"
     "OpenJS.NodeJS"
     "VideoLAN.VLC"
-    "AgileBits.1Password"
+    #"AgileBits.1Password"
 )
 
 Write-Host "---------------------------------------" -ForegroundColor White
