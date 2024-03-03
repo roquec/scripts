@@ -5,9 +5,14 @@ $applications = Get-AppsToInstall
 foreach ($application in $applications)
 {
     $appVersion = $application.Version
+    if($appVersion)
+    {
+        $versionArg = "--version $appVersion"
+    }
+
     $appName = $application.Name
     
-    $elapsed = Measure-Command { winget install $appName --version $appVersion --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log }
+    $elapsed = Measure-Command { winget install $appName $versionArg --silent --no-upgrade --accept-package-agreements --accept-source-agreements > setup.log }
     if ($LASTEXITCODE -eq 0)
     {
         $minutes = $elapsed.Minutes

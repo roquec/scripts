@@ -6,6 +6,7 @@ $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Famil
 foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
 {
     $fileName = $file.Name
+    $fontName = $file.BaseName
 
     $isInstalled = $false
     foreach($installedFont in $installedFonts)
@@ -18,7 +19,7 @@ foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
     }
 
     if (-not( Test-Path -Path "C:\Windows\fonts\$fileName") -and -not($isInstalled)) {
-        Get-ChildItem $file | ForEach-Object { $fontsFolder.CopyHere($_.fullname) }
+        #Get-ChildItem $file | ForEach-Object { $fontsFolder.CopyHere($_.fullname) }
         Write-Host "+ $fileName installed successfully" -ForegroundColor Gray
     }
 }
