@@ -6,5 +6,4 @@ $summary += Invoke-Expression -Command "$PSScriptRoot\verify-install.ps1"
 
 $summary += Invoke-Expression -Command "$PSScriptRoot\verify-terminal.ps1"
 
-$summary >> "$PSScriptRoot\report.md"
-#$summary >> $env:GITHUB_STEP_SUMMARY
+$summary >> $env:GITHUB_STEP_SUMMARY

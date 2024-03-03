@@ -13,27 +13,35 @@ iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstra
 
 The windows setup will do as follows:
 
-### Install apps
+### Install Apps
 
-The script will use winget to intall all apps defined in `.\setup.ps1`
+The script will use winget to intall all apps defined in `.\windows\winget\apps.csv`.
 
-### Windows Terminal config
+### Install Fonts
 
-Windows Terminal will be configured to use `.\windows-terminal\settings.json`
+The script will install all fonts (tff) files found in `.\windows\fonts\` directory.
 
-### PowerShell config
+### Windows Terminal Settings
 
-PowerShell will be configured to use `.\powershell\profile.ps1`
-This configuration includes:
+Windows Terminal will be configured to use `.\windows\windows-terminal\settings.json`.
+
+### PowerShell Profile
+
+PowerShell will be configured to use `.\windows\powershell\profile.ps1`.
+This profile configuration includes:
 * oh-my-posh
 * terminal-icons
 * PSReadLine
 * Custom actions
 
-### OhMyPosh
+### Oh My Posh Theme
 
-A custom theme is provided for OhMyPosh in `.\oh-my-posh\theme-roquec.json`
+A custom theme is provided for OhMyPosh in `.\windows\oh-my-posh\theme.json`.
+This theme will be place in the same directory as the powershell profile file.
 
+### Terminal Icons
+
+The Terminal-Icons module will be installed from PSGallery.
 
 ## License
 This project is open sourced under the [MIT License](https://github.com/roquec/scripts/blob/main/LICENSE).
