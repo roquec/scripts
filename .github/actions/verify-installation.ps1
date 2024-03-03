@@ -11,9 +11,10 @@ $apps = @(
     "Microsoft.VisualStudio.2022.Community"
     "Microsoft.WindowsTerminal"
     "Notepad++.Notepad++"
-    "OpenJS.NodeJS"
+    "NodeJS"
     "VideoLAN.VLC"
     "AgileBits.1Password"
+    "JanDeDobbeleer.OhMyPosh"
 )
 
 # Execute winget list and capture the output
