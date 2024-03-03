@@ -21,46 +21,46 @@ $wingetOutput = winget list | Out-String
 # Split the output into lines
 $lines = $wingetOutput -split "`n"
 
-$summary_output = "## 📝 Windows setup app installation report"
+$summaryOutput = "## 📝 Windows setup app installation report"
 
 foreach ($line in $lines)
 {
     if($line.StartsWith("Name  "))
     {
-        $foundHeader = $true
+        $contentLineStart = $lines.IndexOf($line) + 2
         $nameIndex = 0
         $nameLength = [regex]::Match( $line,'\bId\b' ).Index - 1
         $versionIdex = [regex]::Match( $line,'\bVersion\b' ).Index
         $versionLength = [regex]::Match( $line,'\bAvailable\b' ).Index - $versionIdex
-    }
-
-    if($line -and $foundHeader) 
-    {
-        $appToCheck = $false
-        foreach ($app in $apps) {
-            if ($line -like "*$app*") {
-                $appToCheck = $true
-                break # Exit the loop as soon as a match is found
-            }
-        }
-
-        if($appToCheck) 
-        {
-            $name = $line.Substring($nameIndex, $nameLength).Trim()
-            $version = $line.Substring($versionIdex, $versionLength).Trim()
-            $message = "✅ app **$name** is installed with version **$version**"
-        } 
-        else
-        {
-            $message = "❌ app **$name** is not installed"
-        }
-
-        Write-Host $message
-        $summary_output += "`n$message"
+        break
     }
 }
 
-$summary >> $summary_output
+
+$installedApps = $lines[$contentLineStart..($lines.Length - 1)]
+foreach ($app in $apps)
+{
+    $isInstalled = $false
+    foreach ($installedApp in $installedApps) {
+        if ($installedApp -like "*$app*") {
+            $isInstalled = $true
+            $name = $installedApp.Substring($nameIndex, $nameLength).Trim()
+            $version = $installedApp.Substring($versionIdex, $versionLength).Trim()
+        }
+    }
+
+    if ($isInstalled) {
+        $message = "✅ app **$name** is installed with version **$version**"
+    }
+    else
+    {
+        $message = "❌ app **$app** is not installed"
+    }
+    Write-Host $message
+    $summaryOutput += "`n$message"
+}
+
+$summary >> $summaryOutput
 
 <#
 $appList = winget list
