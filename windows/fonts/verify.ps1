@@ -32,24 +32,24 @@ foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
     }
 }
 
+$msg += "✒️ Application Installation:"
+foreach ($fontResult in $fontResults)
+{
+    if($fontResult.Ok)
+    {
+        $msg += "`n    + Font [$($fontResult.Font)] is installed ✅"
+    }
+    else
+    {
+        $msg += "`n    - Font [$($fontResult.Font)] is not installed ❌"
+    }
+}
 
 $result = New-Object PSObject -Property @{
     Ok = $ok
     Fonts = $fontResults
+    Msg = $msg
 }
-
-Write-Host "✒️ Application Installation:"
-foreach ($fontResult in $result.Fonts)
-{
-    if($fontResult.Ok)
-    {
-        Write-Host "    + Font [$($fontResult.Font)] is installed ✅"
-    }
-    else
-    {
-        Write-Host "    - Font [$($fontResult.Font)] is not installed ❌"
-    }
-    $fontsResultDetailsMsg += "`n$message"
-}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
 
 $result

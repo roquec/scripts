@@ -1,13 +1,21 @@
-Write-Host "Verifying windows setup state..."
-Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\winget\verify.ps1" | Out-Null
-Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\fonts\verify.ps1" | Out-Null
-Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\windows-terminal\verify.ps1" | Out-Null
-Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\powershell\verify.ps1" | Out-Null
-Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\oh-my-posh\verify.ps1" | Out-Null
-Write-Host " "
-Write-Host "In case of missing installations or configurations run setup.ps1 script."
+$winget = Invoke-Expression -Command "$PSScriptRoot\winget\verify.ps1"
+$fonts = Invoke-Expression -Command "$PSScriptRoot\fonts\verify.ps1"
+$windowsTerminal = Invoke-Expression -Command "$PSScriptRoot\windows-terminal\verify.ps1"
+$powershell = Invoke-Expression -Command "$PSScriptRoot\powershell\verify.ps1"
+$ohMyPosh = Invoke-Expression -Command "$PSScriptRoot\oh-my-posh\verify.ps1"
+
+$ok = ($winget.Ok -and $fonts.Ok -and $windowsTerminal.Ok -and $powershell.Ok -and $ohMyPosh.Ok)
+$msg = $winget.Msg + "`n`n" + $fonts.Msg + "`n`n" + $windowsTerminal.Msg + "`n`n" + $powershell.Msg + "`n`n" + $ohMyPosh.Msg
+
+$result = New-Object PSObject -Property @{
+    Ok = $ok
+    Winget = $winget
+    Fonts = $fonts
+    WindowsTerminal = $windowsTerminal
+    PowerShell = $powershell
+    OhMyPosh = $ohMyPosh
+    Msg = $msg
+}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
+
+$result

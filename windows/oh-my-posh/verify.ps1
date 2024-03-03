@@ -14,18 +14,20 @@ if (Test-Path -Path $themePath) {
     }
 }
 
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-}
-
-Write-Host "🎨 Oh My Posh Theme:"
-if($result.Ok)
+$msg += "🎨 Oh My Posh Theme:"
+if($ok)
 {
-    Write-Host "    + OK: Oh My Posh theme is correct! ✅"
+    $msg += "`n    + OK: Oh My Posh theme is correct! ✅"
 }
 else
 {
-    Write-Host "    - Error: Oh My Posh theme does not match reference ❌"
+    $msg += "`n    - Error: Oh My Posh theme does not match reference ❌"
 }
+
+$result = New-Object PSObject -Property @{
+    Ok = $ok
+    Msg = $msg
+}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
 
 $result

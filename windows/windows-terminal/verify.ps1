@@ -17,19 +17,20 @@ if (Test-Path -Path $settingsPath) {
     }
 }
 
-
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-}
-
-Write-Host "⚙️ Windows Terminal Settings:"
-if($result.Ok)
+$msg += "⚙️ Windows Terminal Settings:"
+if($ok)
 {
-    Write-Host "    + OK: Windows Terminal settings are correct! ✅"
+    $msg += "`n    + OK: Windows Terminal settings are correct! ✅"
 }
 else
 {
-    Write-Host "    - Error: Windows Terminal settigns do not match reference ❌"
+    $msg += "`n    - Error: Windows Terminal settigns do not match reference ❌"
 }
+
+$result = New-Object PSObject -Property @{
+    Ok = $ok
+    Msg = $msg
+}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
 
 $result

@@ -51,22 +51,24 @@ foreach ($app in $applications)
     }
 }
 
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-    Apps = $appResults
-}
-
-Write-Host "🖥️ Application Installation:"
-foreach ($appResult in $result.Apps)
+$msg += "🖥️ Application Installation:"
+foreach ($appResult in $appResults)
 {
     if($appResult.Ok)
     {
-        Write-Host "    + App [$($appResult.App)] is installed with version $($appResult.Version) ✅"
+        $msg += "`n    + App [$($appResult.App)] is installed with version $($appResult.Version) ✅"
     }
     else
     {
-        Write-Host "    - App [$($appResult.App)] is not installed ❌"
+        $msg += "`n    - App [$($appResult.App)] is not installed ❌"
     }
 }
+
+$result = New-Object PSObject -Property @{
+    Ok = $ok
+    Apps = $appResults
+    Msg = $msg
+}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
 
 $result

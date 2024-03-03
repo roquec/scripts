@@ -14,18 +14,20 @@ if (Test-Path -Path $profilePath) {
     }
 }
 
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-}
-
-Write-Host "🚀 PowerShell Profile:"
-if($result.Ok)
+$msg += "🚀 PowerShell Profile:"
+if($ok)
 {
-    Write-Host "    + OK: PowerShell profile is correct! ✅"
+    $msg += "`n    + OK: PowerShell profile is correct! ✅"
 }
 else
 {
-    Write-Host "    - Error: PowerShell profile does not match reference ❌"
+    $msg += "`n    - Error: PowerShell profile does not match reference ❌"
 }
+
+$result = New-Object PSObject -Property @{
+    Ok = $ok
+    Msg = $msg
+}
+$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
 
 $result
