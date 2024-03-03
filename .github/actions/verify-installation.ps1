@@ -51,11 +51,11 @@ foreach ($app in $apps)
     }
 
     if ($isInstalled) {
-        $message = "✅ app **$name** is installed with version **$version**"
+        $message = "✅ App ``$name`` is installed with version ``$version``"
     }
     else
     {
-        $message = "❌ app **$app** is not installed"
+        $message = "❌ App ``$app`` is not installed"
     }
     Write-Host $message
     $summary += "`n$message"

@@ -58,9 +58,6 @@ Write-Host $message
 $summary += "`n$message"
 
 
-$summary >> $env:GITHUB_STEP_SUMMARY
-
-
 # Check PowerShell
 $summary += "`n### ⚙️ Oh My Posh"
 Write-Output "Verifying Oh My Posh configuration..."
