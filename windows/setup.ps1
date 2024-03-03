@@ -91,6 +91,7 @@ Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host " "
 $fontsSetup = $PSScriptRoot + "\fonts\setup.ps1"
 & $fontsSetup
+Write-Host " "
 Write-Host "All fonts installed!" -ForegroundColor Green
 
 

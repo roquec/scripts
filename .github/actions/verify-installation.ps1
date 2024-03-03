@@ -47,6 +47,10 @@ foreach ($line in $lines)
             $name = $line.Substring($nameIndex, $nameLength).Trim()
             $version = $line.Substring($versionIdex, $versionLength).Trim()
             Write-Host "Application is installed: $name - Version: $version"
+        } 
+        else
+        {
+            Write-Error "Application $name ($version) is not installed."
         }
     }
 }
