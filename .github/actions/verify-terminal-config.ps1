@@ -1,6 +1,9 @@
 $encoding = 'UTF8'
 
+$summary_output = "## 📝 Windows setup app configuration report"
+
 # Check Windows Terminal
+$summary_output += "`n### ⚙️ Windows Terminal"
 Write-Output "Verifying Windows Terminal configuration..."
 
 $localAppData = $env:LOCALAPPDATA
@@ -17,15 +20,19 @@ $settings = Get-Content -Path $settingsPath -Encoding $encoding -Raw | ForEach-O
 
 if($settings -ne $referenceSettings)
 {
-    Write-Error "Windows Terminal settings does not match reference."
+    $message = "❌ Windows Terminal is not properly configured"
 }
 else
 {
-    Write-Output "Windows Terminal configuration is OK"
+    $message = "✅ Windows Terminal configuration is OK"
 }
+
+Write-Host $message
+$summary_output += "`n$message"
 
 
 # Check PowerShell
+$summary_output += "`n### ⚙️ PowerShell"
 Write-Output "Verifying PowerShell configuration..."
 
 
@@ -40,9 +47,15 @@ $pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw | ForEach
 
 if($pwshProfile -ne $referenceProfile)
 {
-    Write-Error "PowerShell profile does not match reference."
+    $message = "❌ PowerShell is not properly configured"
 }
 else
 {
-    Write-Output "PowerShell configuration is OK"
+    $message = "✅ PowerShell configuration is OK"
 }
+
+Write-Host $message
+$summary_output += "`n$message"
+
+
+$summary >> $summary_output

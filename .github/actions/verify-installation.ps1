@@ -21,6 +21,8 @@ $wingetOutput = winget list | Out-String
 # Split the output into lines
 $lines = $wingetOutput -split "`n"
 
+$summary_output = "## 📝 Windows setup app installation report"
+
 foreach ($line in $lines)
 {
     if($line.StartsWith("Name  "))
@@ -46,15 +48,19 @@ foreach ($line in $lines)
         {
             $name = $line.Substring($nameIndex, $nameLength).Trim()
             $version = $line.Substring($versionIdex, $versionLength).Trim()
-            Write-Host "Application is installed: $name - Version: $version"
+            $message = "✅ app **$name** is installed with version **$version**"
         } 
         else
         {
-            Write-Error "Application $name ($version) is not installed."
+            $message = "❌ app **$name** is not installed"
         }
+
+        Write-Host $message
+        $summary_output += "`n$message"
     }
 }
 
+$summary >> $summary_output
 
 <#
 $appList = winget list
