@@ -58,4 +58,4 @@ Write-Host $message
 $summary += "`n$message"
 
 
-$summary >> $summary_output
+$summary >> $env:GITHUB_STEP_SUMMARY
