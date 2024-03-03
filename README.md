@@ -1,4 +1,4 @@
-![Screenshot of roquec.com](https://raw.githubusercontent.com/roquec/scripts/docs/terminal-screenshot.png)
+![Screenshot of terminal](https://raw.githubusercontent.com/roquec/scripts/main/docs/terminal-screenshot.png)
 
 <a href="https://github.com/roquec/scripts/actions/workflows/win-setup-test.yml">
 <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/roquec/scripts/win-setup-test.yml"></a>
