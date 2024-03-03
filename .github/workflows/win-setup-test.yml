@@ -20,5 +20,8 @@ jobs:
         fetch-depth: 0
 
     - name: Verify
+      run: Get-InstalledModule
+
+    - name: Verify
       shell: PowerShell
       run: pwsh -NoProfile -File .\.github\actions\verify.ps1
