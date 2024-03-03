@@ -1,4 +1,4 @@
-$installed = Get-InstalledModule -Name Terminal-Iconss -erroraction 'silentlycontinue'
+$installed = Get-InstalledModule -Name Terminal-Icons -erroraction 'silentlycontinue'
 
 $msg += "📁 Terminal Icons Module:"
 if($installed)

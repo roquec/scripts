@@ -14,10 +14,6 @@ jobs:
       shell: PowerShell
       run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
 
-    - name: Run setup script repeat
-      shell: PowerShell
-      run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
-
     - name: Checkout
       uses: actions/checkout@v4
       with:
