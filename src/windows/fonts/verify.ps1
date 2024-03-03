@@ -43,11 +43,11 @@ function Get-Result()
     {
         if($fontResult.Ok)
         {
-            $msg += "`n    + Font [$($fontResult.Font)] is installed ✅"
+            $msg += "`n    + $($fontResult.Font) is installed ✅"
         }
         else
         {
-            $msg += "`n    - Font [$($fontResult.Font)] is not installed ❌"
+            $msg += "`n    - $($fontResult.Font) is not installed ❌"
         }
     }
 

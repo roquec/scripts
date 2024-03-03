@@ -9,11 +9,11 @@ function Get-Result()
     $modulesOk = Get-InstalledModule -Name Terminal-Icons -erroraction 'silentlycontinue'
     if($modulesOk)
     {
-        $msg += "`n    + OK: All modules installed ✅"
+        $msg += "`n    + Terminal-Icons module is installed ✅"
     }
     else
     {
-        $msg += "`n    - Error: Missing modules ❌"
+        $msg += "`n    - Terminal-Icons module is not installed ❌"
     }
 
     $profileOk = $true

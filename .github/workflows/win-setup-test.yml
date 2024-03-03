@@ -12,7 +12,7 @@ jobs:
       
     - name: Run setup script
       shell: PowerShell
-      run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
+      run: iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/src/windows/bootstrap.ps1 | iex
 
     - name: Checkout
       uses: actions/checkout@v4

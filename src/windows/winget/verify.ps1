@@ -62,11 +62,11 @@ function Get-Result()
     {
         if($appResult.Ok)
         {
-            $msg += "`n    + App [$($appResult.App)] is installed with version $($appResult.Version) ✅"
+            $msg += "`n    + $($appResult.App) is installed with version $($appResult.Version) ✅"
         }
         else
         {
-            $msg += "`n    - App [$($appResult.App)] is not installed ❌"
+            $msg += "`n    - $($appResult.App) is not installed ❌"
         }
     }
 

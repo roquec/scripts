@@ -1,50 +1,72 @@
+![Screenshot of roquec.com](https://raw.githubusercontent.com/roquec/scripts/docs/terminal-screenshot.png)
+
+<a href="https://github.com/roquec/scripts/actions/workflows/win-setup-test.yml">
+<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/roquec/scripts/win-setup-test.yml"></a>
+
 This repository contains scripts for different setup or development tasks.
-* `windows` contains PowerShell scripts for initial setup of a machine.
+```
+scripts
+  |-.github                 -> Workflows and scripts used for GitHub Actions
+  |-docs                    -> Images and reference material
+  |-src                     -> Source code for the scripts
+    |-windows               -> Scripts for PC setup
+      |-bootstrap.ps1       -> Entry point to execute setup script without cloning repo
+      |-setup.ps1           -> Installs apps, fonts and configures terminal
+      |-setup-terminal.ps1  -> Only configures terminal
+      |-verify.ps1          -> Checks current state compared to desired state
+      ...
+```
 
 ## Windows
 
 These scripts allow for automation of installation, setup and configuration of a Windows workstation.
 
-To run the full windows setup use the following powershell command:
+### Running the Script
+
+To execute the full setup without cloning repo (new pc):
 
 ```ps1
-iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/windows/bootstrap.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/roquec/scripts/main/src/windows/bootstrap.ps1 | iex
 ```
+
+To execute the full setup from local repo:
+```ps1
+.\src\windows\setup.ps1
+```
+
+Just configure terminal (no installations):
+```ps1
+.\src\windows\setup-terminal.ps1
+```
+
+
+### Script Steps
 
 The windows setup will do as follows:
 
-### Install Apps
+1. **Install Apps** setup:
+    * Install apps defined in `\windows\winget\apps.csv` using winget 
+2. **Install Fonts** setup:
+    * Install .tff files in `\windows\fonts\` directory
+3. **Windows Terminal** setup:
+    * Configure settings `\windows\windows-terminal\settings.json`
+4. **PowerShell** setup: 
+    * Install PowerShell modules (Terminal-Icons)
+    * Configure profile  `\windows\powershell\profile.ps1`
+5. **Oh My Posh** setup:
+    * Configure theme `.\windows\oh-my-posh\theme.json`
 
-The script will use winget to intall all apps defined in `.\windows\winget\apps.csv`.
+## Tests
 
-### Install Fonts
+There is a GitHub Actions workflow to test the Windows setup script.
 
-The script will install all fonts (tff) files found in `.\windows\fonts\` directory.
+<a href="https://github.com/roquec/scripts/actions/workflows/win-setup-test.yml">
+<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/roquec/scripts/win-setup-test.yml"></a>
 
-### Windows Terminal Settings
-
-Windows Terminal will be configured to use `.\windows\windows-terminal\settings.json`.
-
-### PowerShell Profile
-
-PowerShell will be configured to use `.\windows\powershell\profile.ps1`.
-This profile configuration includes:
-* oh-my-posh
-* terminal-icons
-* PSReadLine
-* Custom actions
-
-### Oh My Posh Theme
-
-A custom theme is provided for OhMyPosh in `.\windows\oh-my-posh\theme.json`.
-This theme will be place in the same directory as the powershell profile file.
-
-### Terminal Icons
-
-The Terminal-Icons module will be installed from PSGallery.
 
 ## License
 This project is open sourced under the [MIT License](https://github.com/roquec/scripts/blob/main/LICENSE).
+
 
 ## Contact
 Got questions or feedback? Feel free to reach out at [contact@roquec.com](mailto:contact@roquec.com) or [create an issue](https://github.com/roquec/scripts/issues) on GitHub.
