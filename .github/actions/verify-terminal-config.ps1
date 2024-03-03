@@ -1,9 +1,9 @@
 $encoding = 'UTF8'
 
-$summary_output = "## 📝 Windows setup app configuration report"
+$summary = "## 📝 Windows setup app configuration report"
 
 # Check Windows Terminal
-$summary_output += "`n### ⚙️ Windows Terminal"
+$summary += "`n### ⚙️ Windows Terminal"
 Write-Output "Verifying Windows Terminal configuration..."
 
 $localAppData = $env:LOCALAPPDATA
@@ -28,11 +28,11 @@ else
 }
 
 Write-Host $message
-$summary_output += "`n$message"
+$summary += "`n$message"
 
 
 # Check PowerShell
-$summary_output += "`n### ⚙️ PowerShell"
+$summary += "`n### ⚙️ PowerShell"
 Write-Output "Verifying PowerShell configuration..."
 
 
@@ -55,7 +55,7 @@ else
 }
 
 Write-Host $message
-$summary_output += "`n$message"
+$summary += "`n$message"
 
 
 $summary >> $summary_output

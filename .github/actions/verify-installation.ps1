@@ -21,7 +21,7 @@ $wingetOutput = winget list | Out-String
 # Split the output into lines
 $lines = $wingetOutput -split "`n"
 
-$summaryOutput = "## 📝 Windows setup app installation report"
+$summary = "## 📝 Windows setup app installation report"
 
 foreach ($line in $lines)
 {
@@ -57,28 +57,7 @@ foreach ($app in $apps)
         $message = "❌ app **$app** is not installed"
     }
     Write-Host $message
-    $summaryOutput += "`n$message"
+    $summary += "`n$message"
 }
 
-$summary >> $summaryOutput
-
-<#
-$appList = winget list
-
-foreach ($appName in $apps)
-{
-    $versions = $appList | Select-String -pattern $appName -SimpleMatch
-
-    if ($null -ne $versions) {
-        foreach ($app in $versions) {
-            # Extracts and cleans up the application name and version from the output
-            $appDetails = $app -split '\s+', 0
-            $installedAppName = $appDetails[0]
-            $installedAppVersion = $appDetails[2]
-            Write-Host "Application is installed: $installedAppName - Version: $installedAppVersion"
-        }
-    } else {
-        Write-Host "Application '$appName' is not installed."
-    }
-}
-#>
+$summary >> $summary_output
