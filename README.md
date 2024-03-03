@@ -1,7 +1,7 @@
 <a href="https://github.com/roquec/scripts/actions/workflows/win-setup-test.yml">
 <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/roquec/scripts/win-setup-test.yml"></a>
 
-<br/><br/>
+<br/>
 
 My scripts!
 
