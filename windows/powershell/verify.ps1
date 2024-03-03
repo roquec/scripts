@@ -18,4 +18,14 @@ $result = New-Object PSObject -Property @{
     Ok = $ok
 }
 
+Write-Host "🚀 PowerShell Profile:"
+if($result.Ok)
+{
+    Write-Host "    + OK: PowerShell profile is correct! ✅"
+}
+else
+{
+    Write-Host "    - Error: PowerShell profile does not match reference ❌"
+}
+
 $result

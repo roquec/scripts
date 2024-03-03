@@ -38,4 +38,18 @@ $result = New-Object PSObject -Property @{
     Fonts = $fontResults
 }
 
+Write-Host "✒️ Application Installation:"
+foreach ($fontResult in $result.Fonts)
+{
+    if($fontResult.Ok)
+    {
+        Write-Host "    + Font [$($fontResult.Font)] is installed ✅"
+    }
+    else
+    {
+        Write-Host "    - Font [$($fontResult.Font)] is not installed ❌"
+    }
+    $fontsResultDetailsMsg += "`n$message"
+}
+
 $result

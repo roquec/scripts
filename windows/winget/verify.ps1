@@ -56,4 +56,17 @@ $result = New-Object PSObject -Property @{
     Apps = $appResults
 }
 
+Write-Host "🖥️ Application Installation:"
+foreach ($appResult in $result.Apps)
+{
+    if($appResult.Ok)
+    {
+        Write-Host "    + App [$($appResult.App)] is installed with version $($appResult.Version) ✅"
+    }
+    else
+    {
+        Write-Host "    - App [$($appResult.App)] is not installed ❌"
+    }
+}
+
 $result

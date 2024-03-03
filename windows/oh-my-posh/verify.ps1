@@ -18,4 +18,14 @@ $result = New-Object PSObject -Property @{
     Ok = $ok
 }
 
+Write-Host "🎨 Oh My Posh Theme:"
+if($result.Ok)
+{
+    Write-Host "    + OK: Oh My Posh theme is correct! ✅"
+}
+else
+{
+    Write-Host "    - Error: Oh My Posh theme does not match reference ❌"
+}
+
 $result

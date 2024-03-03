@@ -22,4 +22,14 @@ $result = New-Object PSObject -Property @{
     Ok = $ok
 }
 
+Write-Host "⚙️ Windows Terminal Settings:"
+if($result.Ok)
+{
+    Write-Host "    + OK: Windows Terminal settings are correct! ✅"
+}
+else
+{
+    Write-Host "    - Error: Windows Terminal settigns do not match reference ❌"
+}
+
 $result
