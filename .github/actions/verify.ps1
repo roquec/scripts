@@ -1,13 +1,18 @@
-$result = Invoke-Expression -Command "$PSScriptRoot\..\..\windows\verify.ps1"
+$result = & "$PSScriptRoot\..\..\windows\verify.ps1" -Output $true
 
 $summary = ("
 <h1 align='center'>📝 Windows Setup Report 📝</h1>
 
-<p>
+``````text
 
 $($result.Msg)
 
-</p>
+``````
 ");
 
 $summary >> $env:GITHUB_STEP_SUMMARY
+
+if(-not $result.Ok)
+{
+    Write-Error "Windows setup has concluded with errors."
+}

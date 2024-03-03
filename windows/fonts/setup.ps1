@@ -21,5 +21,9 @@ foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
     if (-not( Test-Path -Path "C:\Windows\fonts\$fileName") -and -not($isInstalled)) {
         Get-ChildItem $file | ForEach-Object { $fontsFolder.CopyHere($_.fullname) }
         Write-Host "+ $fileName installed successfully" -ForegroundColor Gray
+    } 
+    else 
+    {
+        Write-Host "- $fileName already installed" -ForegroundColor Gray
     }
 }

@@ -1,33 +1,46 @@
-$ok = $true
+param(
+    [bool]$Output = $false
+)
 
-$encoding = 'UTF8'
-$profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
+function Get-Result()
+{
+    $ok = $true
 
-if (Test-Path -Path $profilePath) {
-    
-    $referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
-    $pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
+    $encoding = 'UTF8'
+    $profilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyDocuments) + "\PowerShell\Microsoft.PowerShell_profile.ps1"
 
-    if($pwshProfile -ne $referenceProfile)
-    {
-        $ok = $false
+    if (Test-Path -Path $profilePath) {
+        
+        $referenceProfile = Get-Content -Path "$PSScriptRoot\..\..\windows\powershell\profile.ps1" -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
+        $pwshProfile = Get-Content -Path $profilePath -Encoding $encoding -Raw | ForEach-Object { $_ -replace "`r`n", "`n" }
+
+        if($pwshProfile -ne $referenceProfile)
+        {
+            $ok = $false
+        }
     }
+
+    $msg += "🚀 PowerShell Profile:"
+    if($ok)
+    {
+        $msg += "`n    + OK: PowerShell profile is correct! ✅"
+    }
+    else
+    {
+        $msg += "`n    - Error: PowerShell profile does not match reference ❌"
+    }
+
+    $result = New-Object PSObject -Property @{
+        Ok = $ok
+        Msg = $msg
+    }
+    $result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
+
+    return $result
 }
 
-$msg += "🚀 PowerShell Profile:"
-if($ok)
-{
-    $msg += "`n    + OK: PowerShell profile is correct! ✅"
+if($Output) {
+    Write-Output (Get-Result)
+} else {
+    Write-Output (Get-Result).Msg
 }
-else
-{
-    $msg += "`n    - Error: PowerShell profile does not match reference ❌"
-}
-
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-    Msg = $msg
-}
-$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
-
-$result

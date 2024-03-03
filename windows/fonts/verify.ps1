@@ -1,55 +1,68 @@
-$fontResults = @()
-$ok = $true
+param(
+    [bool]$Output = $false
+)
 
-[System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") | Out-Null
-$installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
-
-foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
+function Get-Result()
 {
-    $fontName = $file.BaseName
+    $fontResults = @()
+    $ok = $true
 
-    $isInstalled = $false
+    [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") | Out-Null
+    $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
 
-    foreach($installedFont in $installedFonts)
+    foreach ($file in Get-ChildItem -Path "$PSScriptRoot\*.ttf")
     {
-        if($installedFont.Name -eq $fontName)
+        $fontName = $file.BaseName
+
+        $isInstalled = $false
+
+        foreach($installedFont in $installedFonts)
         {
-            $isInstalled = $true
-            break
+            if($installedFont.Name -eq $fontName)
+            {
+                $isInstalled = $true
+                break
+            }
+        }
+
+        $fontResult = New-Object PSObject -Property @{
+            Font = $fontName
+            Ok = $isInstalled
+        }
+
+        $fontResults += $fontResult
+
+        if(-not $isInstalled)
+        {
+            $ok = $false
         }
     }
 
-    $fontResult = New-Object PSObject -Property @{
-        Font = $fontName
-        Ok = $isInstalled
-    }
-
-    $fontResults += $fontResult
-
-    if(-not $isInstalled)
+    $msg += "✒️ Application Installation:"
+    foreach ($fontResult in $fontResults)
     {
-        $ok = $false
+        if($fontResult.Ok)
+        {
+            $msg += "`n    + Font [$($fontResult.Font)] is installed ✅"
+        }
+        else
+        {
+            $msg += "`n    - Font [$($fontResult.Font)] is not installed ❌"
+        }
     }
+
+    $result = New-Object PSObject -Property @{
+        Ok = $ok
+        Fonts = $fontResults
+        Msg = $msg
+    }
+    $result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
+
+    return $result
 }
 
-$msg += "✒️ Application Installation:"
-foreach ($fontResult in $fontResults)
-{
-    if($fontResult.Ok)
-    {
-        $msg += "`n    + Font [$($fontResult.Font)] is installed ✅"
-    }
-    else
-    {
-        $msg += "`n    - Font [$($fontResult.Font)] is not installed ❌"
-    }
+if($Output) {
+    Write-Output (Get-Result)
+} else {
+    Write-Output (Get-Result).Msg
 }
-
-$result = New-Object PSObject -Property @{
-    Ok = $ok
-    Fonts = $fontResults
-    Msg = $msg
-}
-$result | Add-Member -MemberType ScriptMethod -Name ToString -Force -Value {return "$($this.Msg)"}
-
-$result
