@@ -2,7 +2,6 @@ Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host "|  Installing applications via WinGet |" -ForegroundColor White
 Write-Host "---------------------------------------" -ForegroundColor White
 Write-Host " "
-Invoke-Expression -Command "$PSScriptRoot\..\..\windows\windows-terminal\verify.ps1"
 $wingetSetup = $PSScriptRoot + "\winget\setup.ps1"
 & $wingetSetup
 Write-Host "All apps installed!" -ForegroundColor Green
