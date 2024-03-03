@@ -1,9 +1,14 @@
 <a href="https://github.com/roquec/scripts/actions/workflows/win-setup-test.yml">
 <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/roquec/scripts/win-setup-test.yml"></a>
 
+<br/><br/>
+
+My scripts!
+
 This repository contains my scripts for different setup or development tasks. Mainly for personal use to keep my workstation setup and other handy stuff. Feel free to use or get inspired and improve upon it!
 
-PowerShell terminal final configuration:
+Example of resulting PowerShell terminal
+
 ![Screenshot of terminal](https://raw.githubusercontent.com/roquec/scripts/main/docs/terminal-screenshot.png)
 
 Structure of the project
