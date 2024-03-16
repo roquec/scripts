@@ -60,7 +60,7 @@ The windows setup will do as follows:
     * Install PowerShell modules (Terminal-Icons)
     * Configure profile  `\windows\powershell\profile.ps1`
 5. **Oh My Posh** setup:
-    * Configure theme `.\windows\oh-my-posh\theme.json`
+    * Configure theme `\windows\oh-my-posh\theme.json`
 
 ## Tests
 

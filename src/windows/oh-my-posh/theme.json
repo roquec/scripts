@@ -56,7 +56,7 @@
                         "fetch_upstream_icon": true
                     },
                     "style": "plain",
-                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if or .BranchStatus .Working.Changed .Staging.Changed }}(<p:git-branch-status-foreground>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</><p:git-changes-foreground>{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}</><p:git-staging-foreground>{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}</>){{ end }}",
+                    "template": " {{ .UpstreamIcon }} {{ .HEAD }}{{ if or .BranchStatus .Working.Changed .Staging.Changed }}(<p:git-branch-status-foreground>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</><p:git-changes-foreground>{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}</><p:git-staging-foreground>{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}</>){{ end }}",
                     "type": "git"
                 },
                 {
