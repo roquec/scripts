@@ -38,7 +38,7 @@ function Get-Result()
         }
     }
 
-    $msg += "✒️ Application Installation:"
+    $msg += "✒️ Font Installation:"
     foreach ($fontResult in $fontResults)
     {
         if($fontResult.Ok)
