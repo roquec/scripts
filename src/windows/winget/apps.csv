@@ -1,18 +1,25 @@
-Id,Name,Version
-Microsoft.PowerShell
-"Microsoft.WindowsTerminal"
-JanDeDobbeleer.OhMyPosh
-"7zip.7zip"
-"Git.Git"
-"Microsoft.DotNet.SDK.8"
-"Microsoft.NuGet"
-"Microsoft.PowerToys"
-"Microsoft.RemoteDesktopClient"
-"Microsoft.SQLServerManagementStudio"
-"Microsoft.VisualStudioCode"
-"Microsoft.VisualStudio.2022.Community"
-"Notepad++.Notepad++"
-"OpenJS.NodeJS", "Node.js"
-"VideoLAN.VLC"
-"AgileBits.1Password"
-"JetBrains.Toolbox"
+"Id"                                            , "Name"        , "Version"
+"Microsoft.PowerShell"                          ,               ,
+"Microsoft.WindowsTerminal"                     ,               ,
+"JanDeDobbeleer.OhMyPosh"                       ,               ,
+"7zip.7zip"                                     ,               ,
+"Git.Git"                                       ,               ,
+"Microsoft.DotNet.SDK.8"                        ,               ,
+"Microsoft.NuGet"                               ,               ,
+"Microsoft.PowerToys"                           ,               ,
+"Microsoft.RemoteDesktopClient"                 ,               ,
+"Microsoft.SQLServerManagementStudio"           ,               ,
+"Microsoft.VisualStudioCode"                    ,               ,
+"Microsoft.VisualStudio.2022.Community"         ,               ,
+"Notepad++.Notepad++"                           ,               ,
+"OpenJS.NodeJS"                                 , "Node.js"     ,
+"VideoLAN.VLC"                                  ,               ,
+"AgileBits.1Password"                           ,               ,
+"JetBrains.Toolbox"                             ,               ,
+"Google.Chrome"                                 ,               ,
+"dotPDN.PaintDotNet"                            ,               ,
+"Flow-Launcher.Flow-Launcher"                   ,               ,
+"Discord.Discord"                               ,               ,
+"9NKSQGP7F2NH"                                  , "WhatsApp"    ,
+"Stremio.Stremio"                               ,               ,
+"ExpressVPN.ExpressVPN"                         ,               ,
