@@ -44,7 +44,7 @@ function Get-Result()
         }
 
         $status = New-Object PSObject -Property @{
-            App = $appId
+            App = $appName
             Version = $version
             Ok = $isInstalled
         }
