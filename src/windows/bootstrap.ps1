@@ -12,7 +12,7 @@ winget install -e --id Microsoft.PowerShell --accept-package-agreements --accept
 $Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 [Environment]::SetEnvironmentVariable("Path", $Path, "Process")
 
-$setupScript = "$TempDir\scripts-main\windows\setup.ps1"
+$setupScript = "$TempDir\scripts-main\src\windows\setup.ps1"
 pwsh -File  $SetupScript
 
 Remove-Item $TempDir -Recurse -Force
