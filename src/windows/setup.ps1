@@ -11,6 +11,8 @@ Write-Output " "
 & "$PSScriptRoot\powershell\setup.ps1"
 Write-Output " "
 & "$PSScriptRoot\oh-my-posh\setup.ps1"
+Write-Output " "
+& "$PSScriptRoot\configuration\setup.ps1"
 
 Write-Output " "
 Write-Output "✅ FULL PC SETUP COMPLETED SUCCESSFULLY!"
