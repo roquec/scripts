@@ -1,7 +1,7 @@
 $result = & "$PSScriptRoot\..\..\src\windows\verify.ps1" -Output $true
 
 $summary = ("
-#📝 Windows Setup Report 📝
+# 📝 Windows Setup Report 📝
 
 ``````text
 

@@ -4,6 +4,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Clipboard" -Name "EnableClipboa
 
 Write-Output "    + Clipboard history enabled ✅"
 
-wsl --install
+wsl --install | Out-Null
 
 Write-Output "    + WSL installed ✅"
