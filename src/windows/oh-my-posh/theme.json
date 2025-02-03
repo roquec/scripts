@@ -1,101 +1,114 @@
 {
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
     "palette": {
-        "time-foreground": "#a9a9a9",
-        "session-foreground": "#E36464",
-        "path-foreground": "#56B6C2",
-        "dotnet-foreground": "#ac99ea",
+        "dotnet-foreground": "#AC99EA",
+        "elapsed-foreground": "#A9A9A9",
+        "git-branch-status-foreground": "#A3A5E7",
+        "git-changes-foreground": "#E7B5A3",
         "git-foreground": "#DDB15F",
-        "git-branch-status-foreground": "#a3a5e7",
-        "git-changes-foreground": "#e7b5a3",
-        "git-staging-foreground": "#c7e7a3",
-        "prompt-foreground": "#cccccc",
-        "ellapsed-foreground": "#a9a9a9",
-        "status-ok-foreground": "#68db7f",
-        "status-error-foreground": "#E36464"
+        "git-staging-foreground": "#C7E7A3",
+        "path-foreground": "#56B6C2",
+        "prompt-foreground": "#CCCCCC",
+        "session-foreground": "#E36464",
+        "status-error-foreground": "#E36464",
+        "status-ok-foreground": "#68DB7F",
+        "time-foreground": "#A9A9A9"
     },
     "blocks": [
         {
+            "type": "prompt",
             "alignment": "left",
             "segments": [
                 {
-                    "foreground": "p:time-foreground",
                     "properties": {
+                        "cache_duration": "none",
                         "time_format": "15:04"
                     },
-                    "style": "plain",
                     "template": "[{{ .CurrentDate | date .Format }}]",
-                    "type": "time"
+                    "foreground": "p:time-foreground",
+                    "type": "time",
+                    "style": "plain"
                 },
                 {
-                    "foreground": "p:session-foreground",
-                    "style": "plain",
-                    "template": " \uf2bd {{ .UserName }}",
-                    "type": "session"
-                },
-                {
-                    "foreground": "p:path-foreground",
                     "properties": {
+                        "cache_duration": "none"
+                    },
+                    "template": " \uf2bd {{ .UserName }}",
+                    "foreground": "p:session-foreground",
+                    "type": "session",
+                    "style": "plain"
+                },
+                {
+                    "properties": {
+                        "cache_duration": "none",
                         "style": "folder"
                     },
-                    "style": "plain",
                     "template": " \ue5ff {{ .Path }}",
-                    "type": "path"
+                    "foreground": "p:path-foreground",
+                    "type": "path",
+                    "style": "plain"
                 },
                 {
-                    "type": "dotnet",
-                    "style": "plain",
+                    "properties": {
+                        "cache_duration": "none"
+                    },
+                    "template": " \udb81\ude10 {{ .Full }}",
                     "foreground": "p:dotnet-foreground",
-                    "template": " \udb81\ude10 {{ .Full }}"
+                    "type": "dotnet",
+                    "style": "plain"
                 },
                 {
-                    "foreground": "p:git-foreground",
                     "properties": {
                         "branch_icon": "",
+                        "cache_duration": "none",
                         "fetch_status": true,
                         "fetch_upstream_icon": true
                     },
-                    "style": "plain",
-                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if or .BranchStatus .Working.Changed .Staging.Changed }}(<p:git-branch-status-foreground>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</><p:git-changes-foreground>{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}</><p:git-staging-foreground>{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}</>){{ end }}",
-                    "type": "git"
+                    "template": " {{ .UpstreamIcon }} {{ .HEAD }}{{ if or .BranchStatus .Working.Changed .Staging.Changed }}(<p:git-branch-status-foreground>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</><p:git-changes-foreground>{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}</><p:git-staging-foreground>{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}</>){{ end }}",
+                    "foreground": "p:git-foreground",
+                    "type": "git",
+                    "style": "plain"
                 },
                 {
+                    "properties": {
+                        "cache_duration": "none"
+                    },
+                    "template": " ❯",
                     "foreground": "p:prompt-foreground",
-                    "style": "plain",
-                    "template": " \u276f",
-                    "type": "text"
+                    "type": "text",
+                    "style": "plain"
                 }
-            ],
-            "type": "prompt"
+            ]
         },
         {
+            "type": "rprompt",
             "alignment": "right",
             "segments": [
                 {
-                    "foreground": "p:ellapsed-foreground",
                     "properties": {
+                        "cache_duration": "none",
                         "style": "roundrock",
                         "threshold": 0
                     },
-                    "style": "plain",
                     "template": "~{{ .FormattedMs }}",
-                    "type": "executiontime"
+                    "foreground": "p:elapsed-foreground",
+                    "type": "executiontime",
+                    "style": "plain"
                 },
                 {
-                    "foreground": "p:status-ok-foreground",
                     "properties": {
-                        "always_enabled": true
+                        "always_enabled": true,
+                        "cache_duration": "none"
                     },
-                    "style": "plain",
                     "template": "{{ if eq .Code 0 }}💚{{ else }}<p:status-error-foreground>💔</>{{end}}",
-                    "type": "status"
+                    "foreground": "p:status-ok-foreground",
+                    "type": "status",
+                    "style": "plain"
                 }
-            ],
-            "type": "rprompt"
+            ]
         }
     ],
-    "final_space": true,
-    "version": 2,
+    "version": 3,
     "auto_upgrade": true,
-    "disable_notice": true
+    "final_space": true
 }
