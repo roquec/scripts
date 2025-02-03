@@ -1,10 +1,10 @@
-"Id",                                           "Name",                                             "Version"
+"Id",                                           "Name",                                         "Version"
 "Microsoft.PowerShell",                         "PowerShell",
 "Microsoft.WindowsTerminal",                    "Windows Terminal",
 "JanDeDobbeleer.OhMyPosh",                      "Oh My Posh",
 "7zip.7zip",                                    "7zip",
 "Git.Git",                                      "Git",
-"Microsoft.DotNet.SDK.8",                       "DotNet 8 SDK",
+"Microsoft.DotNet.SDK.9",                       "DotNet 9 SDK",
 "Microsoft.NuGet",                              "NuGet",
 "Microsoft.PowerToys",                          "Power Toys",
 "Microsoft.RemoteDesktopClient",                "Remote Desktop Client",
@@ -18,7 +18,6 @@
 "JetBrains.Toolbox",                            "JetBrains Toolbox",
 "Google.Chrome",                                "Chrome",
 "dotPDN.PaintDotNet",                           "Paint.NET",
-"Flow-Launcher.Flow-Launcher",                  "Flow-Launcher",
 "Discord.Discord",                              "Discord",
 "Stremio.Stremio",                              "Stremio",
 "ExpressVPN.ExpressVPN",                        "ExpressVPN",
